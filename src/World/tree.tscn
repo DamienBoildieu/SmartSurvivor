@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://0q5w8fdwktm6"]
+
+[ext_resource type="Script" path="res://src/World/tree.gd" id="1_4ovhk"]
+[ext_resource type="Texture2D" uid="uid://bndk3vs0k55m7" path="res://assets/mystic_woods_free_2.1/sprites/objects/tree.png" id="2_pypmv"]
+[ext_resource type="Script" path="res://src/World/TreeSprite.gd" id="3_4h8t4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52hq4"]
+size = Vector2(26, 19)
+
+[node name="Tree" type="StaticBody2D"]
+position = Vector2(243, 275)
+script = ExtResource("1_4ovhk")
+
+[node name="TreeSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_pypmv")
+script = ExtResource("3_4h8t4")
+tree_sprite = "res://assets/mystic_woods_free_2.1/sprites/objects/tree.png"
+trunk_sprite = "res://assets/mystic_woods_free_2.1/sprites/objects/trunk.png"
+
+[node name="TreeCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 17.5)
+shape = SubResource("RectangleShape2D_52hq4")
