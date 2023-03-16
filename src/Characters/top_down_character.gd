@@ -2,27 +2,29 @@ extends CharacterBody2D
 
 
 enum Direction {UP, DOWN, LEFT, RIGHT}
-
+enum State {IDLE, WALK, ATTACK}
 
 @export var speed = 100.0
 
 
-var direction: Direction = Direction.DOWN
+var direction = Direction.DOWN
+var state = State.IDLE
 @onready var sprite = $AnimatedSprite2D
 
 
 func _physics_process(_delta):
-	update_direction()
+	_update_direction()
 	play_animation()
-	hit()
-	move_and_slide()
 	
-func get_animation_name(move_vector: Vector2) -> String:
+func get_animation_name() -> String:
 	var animation_name: String
-	if move_vector.length() > 0:
-		animation_name = "walk_"
-	else:
-		animation_name = "stand_"
+	match state:
+		State.IDLE:
+			animation_name = "stand_"
+		State.WALK:
+			animation_name = "walk_"
+		State.ATTACK:
+			animation_name = "attack_"
 
 	match direction:
 		Direction.UP:
@@ -35,10 +37,13 @@ func get_animation_name(move_vector: Vector2) -> String:
 	return animation_name
 
 func play_animation() -> void:
-	var animation_name: String = get_animation_name(velocity)
-	sprite.play(animation_name)	
+	var animation_name: String = get_animation_name()
+	sprite.play(animation_name)
 
-func update_direction() -> void:
+func _on_animation_finished() -> void:
+	pass
+
+func _update_direction() -> void:
 	pass
 
 func hit() -> void:

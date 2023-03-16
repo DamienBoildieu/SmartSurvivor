@@ -1,7 +1,7 @@
 [gd_scene load_steps=53 format=3 uid="uid://bj4oxy6duohcc"]
 
 [ext_resource type="Script" path="res://src/Characters/top_down_character.gd" id="1_30mdk"]
-[ext_resource type="Texture2D" uid="uid://bywbqbwjkcmr4" path="res://assets/mystic_woods_free_2.1/sprites/characters/player.png" id="1_o6nid"]
+[ext_resource type="Texture2D" uid="uid://dwy37uubi1v4k" path="res://assets/mystic_woods_free_2.1/sprites/characters/player.png" id="1_o6nid"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3vut2"]
 atlas = ExtResource("1_o6nid")
@@ -398,7 +398,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tbnep")
-animation = &"stand_side"
+animation = &"stand_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
