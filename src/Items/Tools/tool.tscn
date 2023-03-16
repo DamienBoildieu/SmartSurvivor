@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmkunxy1d0rm8"]
+[gd_scene load_steps=4 format=3 uid="uid://dmkunxy1d0rm8"]
 
 [ext_resource type="PackedScene" uid="uid://c254has6fswqy" path="res://src/Items/item.tscn" id="1_w2xxr"]
 [ext_resource type="Script" path="res://src/Items/Tools/tool.gd" id="2_sjkph"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_56kxl"]
+
 [node name="Tool" instance=ExtResource("1_w2xxr")]
 script = ExtResource("2_sjkph")
+
+[node name="Area2D" type="Area2D" parent="." index="1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_56kxl")
