@@ -6,7 +6,7 @@ signal cut(nb_wood)
 
 @export_category("Characterisctics")
 @export var MAX_CUT_DAY = 5
-@export var MAX_HEALTH = 100
+@export var MAX_HEALTH = 5
 @export var health = MAX_HEALTH
 
 
@@ -19,10 +19,13 @@ var remaining_days: int = MAX_CUT_DAY
 func _ready():
 	sprite.load_tree()
 
-func _on_hit(damage: int) -> void:
-	health -= damage
-	if health <= 0:
-		cut_tree()
+func take_damage(damage: int = 1) -> void:
+	if health > 0 and $DamageTimer.can_take_damage:
+		$DamageTimer.start_timer() 
+		health -= damage
+		$AnimationPlayer.play("hit")
+		if health <= 0:
+			cut_tree()
 
 func cut_tree() -> void:
 	var nb_wood = randi()%5

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp2ho8xs7k8t1"]
+
+[ext_resource type="Script" path="res://src/Utils/damage_timer.gd" id="1_yfv2p"]
+
+[node name="DamageTimer" type="Timer"]
+wait_time = 0.2
+one_shot = true
+script = ExtResource("1_yfv2p")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]

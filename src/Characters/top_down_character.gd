@@ -46,3 +46,15 @@ func update_animation() -> void:
 		direction.y = - direction.y
 	apply_blending(next_state, direction)
 	animation_state_machine.travel(next_state)
+
+func perform_attack(target: Node)-> void:
+	if target.has_method("take_damage"):
+		target.take_damage()
+
+
+func _on_attack_area_area_entered(area:Area2D):
+	perform_attack(area)
+	
+
+func _on_attack_area_body_entered(body):
+	perform_attack(body)
