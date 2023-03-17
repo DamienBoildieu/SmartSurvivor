@@ -6,6 +6,7 @@
 script/source = "extends \"res://src/Characters/top_down_character.gd\"
 
 
+
 func handle_inputs() -> void:
 	if Input.is_action_just_pressed(\"attack\"):
 		state = State.ATTACK
@@ -38,6 +39,9 @@ func _physics_process(delta):
 
 [node name="PlayerCharacter" instance=ExtResource("1_lpo8s")]
 script = SubResource("GDScript_tlkpy")
+
+[node name="Sprite2D" parent="." index="0"]
+frame = 8
 
 [node name="AnimationTree" parent="." index="3"]
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_dakvl")

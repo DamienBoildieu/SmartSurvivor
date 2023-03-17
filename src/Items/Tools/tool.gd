@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 
 # Called when the node enters the scene tree for the first time.
@@ -11,5 +11,5 @@ func _process(delta):
 	pass
 
 
-func use() -> void:
+func _use() -> void:
 	pass

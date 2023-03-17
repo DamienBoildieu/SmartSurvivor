@@ -1,11 +1,10 @@
-[gd_scene load_steps=50 format=3 uid="uid://bj4oxy6duohcc"]
+[gd_scene load_steps=49 format=3 uid="uid://bj4oxy6duohcc"]
 
 [ext_resource type="Script" path="res://src/Characters/top_down_character.gd" id="1_30mdk"]
 [ext_resource type="Texture2D" uid="uid://dwy37uubi1v4k" path="res://assets/mystic_woods_free_2.1/sprites/characters/player.png" id="1_o6nid"]
-[ext_resource type="PackedScene" uid="uid://dmkunxy1d0rm8" path="res://src/Items/Tools/tool.tscn" id="2_3l12x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlcnp"]
-size = Vector2(24, 30)
+size = Vector2(13, 6)
 
 [sub_resource type="Animation" id="Animation_4ad4x"]
 length = 0.001
@@ -402,6 +401,7 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_yjws1")
 blend_point_2/pos = Vector2(1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_c1fog")
 blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1fs3h"]
 animation = &"die_left"
@@ -414,6 +414,7 @@ blend_point_0/node = SubResource("AnimationNodeAnimation_1fs3h")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_3rvs7")
 blend_point_1/pos = 1.0
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o1yje"]
 animation = &"idle_left"
@@ -459,6 +460,7 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_relrg")
 blend_point_2/pos = Vector2(1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_vys2k")
 blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7x4v8"]
 advance_mode = 2
@@ -503,16 +505,14 @@ motion_mode = 1
 script = ExtResource("1_30mdk")
 metadata/_edit_group_ = true
 
-[node name="EquipedTool" parent="." instance=ExtResource("2_3l12x")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_dlcnp")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_o6nid")
 hframes = 6
 vframes = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 14)
+shape = SubResource("RectangleShape2D_dlcnp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -524,7 +524,10 @@ tree_root = SubResource("AnimationNodeStateMachine_jaiyb")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_1uyc4")
-parameters/Attack/blend_position = Vector2(-0.769166, 0.0960854)
+parameters/Attack/blend_position = Vector2(-0.204718, 0.956332)
 parameters/Die/blend_position = -0.312845
 parameters/Idle/blend_position = Vector2(0.428812, 0.0916667)
 parameters/Walk/blend_position = Vector2(0.00252736, 0.982533)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)

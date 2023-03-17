@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 enum State {IDLE, WALK, ATTACK, DIE}
 
-const CharToAnim = {
+const CharToAnim: Dictionary = {
 	State.IDLE: "Idle",
 	State.WALK: "Walk",
 	State.ATTACK: "Attack",
@@ -11,37 +11,38 @@ const CharToAnim = {
 }
 
 
-@export var speed = 150.0
+@export var speed: float = 150.0
 
 
 @onready var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.get("parameters/playback")
-var state = State.IDLE
-
+var state: State = State.IDLE
+var direction: Vector2 = Vector2(0., -1.)
 
 func _physics_process(_delta):
-	update_direction()
+	update_animation()
 	move_and_slide()
 
 
-func update_direction() -> void:
+func set_blending_position(param: String, blending_pos: Vector2) -> void:
+	var blending_param: String = "parameters/" + param + "/blend_position"
+	$AnimationTree.set(blending_param, blending_pos)
+
+
+func apply_blending(next_state: String, blending_pos: Vector2) -> void:
+	var current_state: String = animation_state_machine.get_current_node()
+	set_blending_position(current_state, blending_pos)
+	var state_path: PackedStringArray = animation_state_machine.get_travel_path()
+	for st in state_path:
+		set_blending_position(st, blending_pos)
+	if next_state != current_state:
+		set_blending_position(next_state, blending_pos)
+
+
+func update_animation() -> void:
 	var next_state: String = CharToAnim[state]
-	animation_state_machine.travel(next_state)
 	if velocity != Vector2.ZERO:
-		var direction: Vector2 = velocity.normalized()
+		direction = velocity.normalized()
 		# y axis in bleding space is opposed to y axis in game space
 		direction.y = - direction.y
-		var blending_param: String = "parameters/" + animation_state_machine.get_current_node() + "/blend_position"
-		$AnimationTree.set(blending_param, direction)
-		var state_path: PackedStringArray = animation_state_machine.get_travel_path()
-		for current_state in state_path:
-			blending_param = "parameters/" + current_state + "/blend_position" 
-			$AnimationTree.set(blending_param, direction)
-		blending_param = "parameters/" + next_state + "/blend_position" 
-		$AnimationTree.set(blending_param, direction)
-
-func _on_animation_finished() -> void:
-	pass
-
-
-func hit() -> void:
-	pass
+	apply_blending(next_state, direction)
+	animation_state_machine.travel(next_state)

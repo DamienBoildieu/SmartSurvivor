@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://fa2hkjrjma62"]
+
+[ext_resource type="PackedScene" uid="uid://0q5w8fdwktm6" path="res://src/World/tree.tscn" id="2_7i7ho"]
+[ext_resource type="PackedScene" uid="uid://datjx1ikwqurc" path="res://src/Characters/player_character.tscn" id="2_ptppu"]
+
+[node name="TestMap" type="TileMap"]
+y_sort_enabled = true
+format = 2
+
+[node name="Tree" parent="." instance=ExtResource("2_7i7ho")]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_ptppu")]
