@@ -12,6 +12,10 @@ const CharToAnim: Dictionary = {
 
 
 @export var speed: float = 150.0
+@export var health: float = 100.0
+@export var energy: float = 100.0
+@export var hungry: float = 100.0
+@export var thirsty: float = 100.0
 
 
 @onready var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.get("parameters/playback")
@@ -47,7 +51,7 @@ func update_animation() -> void:
 	apply_blending(next_state, direction)
 	animation_state_machine.travel(next_state)
 
-func perform_attack(target: Node)-> void:
+func perform_attack(target: Node) -> void:
 	if target.has_method("take_damage"):
 		target.take_damage()
 
