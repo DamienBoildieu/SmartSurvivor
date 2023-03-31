@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://brdbo8vtrmx5b"]
+
+[ext_resource type="Script" path="res://src/GUI/animated_bar.gd" id="1_j058k"]
+
+[node name="AnimatedBar" type="TextureProgressBar"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_j058k")

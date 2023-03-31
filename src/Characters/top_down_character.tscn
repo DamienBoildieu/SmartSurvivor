@@ -86,7 +86,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-0.5, 24)]
+"values": [Vector2(-0.5, 24.05)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -186,7 +186,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-16, 14)]
+"values": [Vector2(-16.05, 14)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -250,7 +250,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(15, 14)]
+"values": [Vector2(15.05, 14)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -326,7 +326,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.5, 4)]
+"values": [Vector2(0.5, 3.95)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -761,5 +761,8 @@ parameters/Walk/blend_position = Vector2(0.00252736, 0.982533)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
+[node name="NeedsTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="Sprite2D/AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="body_entered" from="Sprite2D/AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="timeout" from="NeedsTimer" to="." method="_on_needs_timer_timeout"]

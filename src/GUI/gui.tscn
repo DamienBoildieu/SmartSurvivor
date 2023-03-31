@@ -1,14 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dssromjsg4d3x"]
+[gd_scene load_steps=8 format=3 uid="uid://dssromjsg4d3x"]
 
+[ext_resource type="Script" path="res://src/GUI/gui.gd" id="1_5kexa"]
 [ext_resource type="Texture2D" uid="uid://dutlkr78kcq41" path="res://assets/GUI/bar_bg.png" id="1_m0t84"]
 [ext_resource type="Texture2D" uid="uid://ddb4copyviy7p" path="res://assets/GUI/health_fill.png" id="2_0q2bi"]
 [ext_resource type="Texture2D" uid="uid://htseaaaxbtea" path="res://assets/GUI/energy_fill.png" id="3_rwfpc"]
+[ext_resource type="Script" path="res://src/GUI/animated_bar.gd" id="4_710cp"]
 [ext_resource type="Texture2D" uid="uid://c3wtbn36cyue6" path="res://assets/GUI/water_fill.png" id="4_evisq"]
 [ext_resource type="Texture2D" uid="uid://pwuqh0f13w5y" path="res://assets/GUI/food_fill.png" id="5_tfqag"]
 
 [node name="GUI" type="MarginContainer"]
 offset_right = 5306.0
 offset_bottom = 668.0
+script = ExtResource("1_5kexa")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -21,6 +24,7 @@ value = 100.0
 texture_under = ExtResource("1_m0t84")
 texture_progress = ExtResource("2_0q2bi")
 texture_progress_offset = Vector2(40, 40)
+script = ExtResource("4_710cp")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -31,6 +35,7 @@ value = 100.0
 texture_under = ExtResource("1_m0t84")
 texture_progress = ExtResource("3_rwfpc")
 texture_progress_offset = Vector2(40, 40)
+script = ExtResource("4_710cp")
 
 [node name="WaterBar" type="TextureProgressBar" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -38,6 +43,7 @@ value = 100.0
 texture_under = ExtResource("1_m0t84")
 texture_progress = ExtResource("4_evisq")
 texture_progress_offset = Vector2(40, 40)
+script = ExtResource("4_710cp")
 
 [node name="FoodBar" type="TextureProgressBar" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -45,3 +51,4 @@ value = 100.0
 texture_under = ExtResource("1_m0t84")
 texture_progress = ExtResource("5_tfqag")
 texture_progress_offset = Vector2(40, 40)
+script = ExtResource("4_710cp")
