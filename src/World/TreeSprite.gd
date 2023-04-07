@@ -1,8 +1,10 @@
 extends Sprite2D
 
+class_name TreeSprite
+
 @export_category("Sprites")
-@export var tree_sprite: String
-@export var trunk_sprite: String
+@export_file var tree_sprite: String
+@export_file var trunk_sprite: String
 
 
 # Called when the node enters the scene tree for the first time.

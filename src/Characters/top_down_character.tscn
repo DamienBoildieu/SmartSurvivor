@@ -1,8 +1,10 @@
-[gd_scene load_steps=51 format=3 uid="uid://bj4oxy6duohcc"]
+[gd_scene load_steps=53 format=3 uid="uid://cl1obce8d36g3"]
 
 [ext_resource type="Script" path="res://src/Characters/top_down_character.gd" id="1_30mdk"]
 [ext_resource type="Texture2D" uid="uid://dwy37uubi1v4k" path="res://assets/mystic_woods_free_2.1/sprites/characters/player.png" id="1_o6nid"]
-[ext_resource type="AudioStream" uid="uid://c3xnbb3ji50id" path="res://assets/Darkworld Audio - Survival Effects [Free]/Tools/DesignedAxe3.wav" id="3_ib386"]
+[ext_resource type="AudioStream" uid="uid://c3xnbb3ji50id" path="res://assets/Darkworld Audio - Survival Effects [Free]/Tools/DesignedAxe3.wav" id="3_ngrnj"]
+[ext_resource type="PackedScene" uid="uid://b2j8pa2vqj4vh" path="res://src/Utils/health.tscn" id="4_k0gqj"]
+[ext_resource type="PackedScene" uid="uid://bcxqiqy23c4vc" path="res://src/Utils/need.tscn" id="5_3pnnt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t8nbl"]
 size = Vector2(0, 0)
@@ -737,7 +739,7 @@ position = Vector2(-1, 4)
 shape = SubResource("RectangleShape2D_t8nbl")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sprite2D/AttackArea"]
-stream = ExtResource("3_ib386")
+stream = ExtResource("3_ngrnj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 14)
@@ -761,8 +763,16 @@ parameters/Walk/blend_position = Vector2(0.00252736, 0.982533)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
-[node name="NeedsTimer" type="Timer" parent="."]
+[node name="Health" parent="." instance=ExtResource("4_k0gqj")]
+
+[node name="Water" parent="." instance=ExtResource("5_3pnnt")]
+
+[node name="Energy" parent="." instance=ExtResource("5_3pnnt")]
+
+[node name="Food" parent="." instance=ExtResource("5_3pnnt")]
 
 [connection signal="area_entered" from="Sprite2D/AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="body_entered" from="Sprite2D/AttackArea" to="." method="_on_attack_area_body_entered"]
-[connection signal="timeout" from="NeedsTimer" to="." method="_on_needs_timer_timeout"]
+[connection signal="lack_need" from="Water" to="." method="_on_water_lack_need"]
+[connection signal="lack_need" from="Energy" to="." method="_on_energy_lack_need"]
+[connection signal="lack_need" from="Food" to="." method="_on_food_lack_need"]

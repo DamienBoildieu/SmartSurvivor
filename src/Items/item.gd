@@ -1,8 +1,7 @@
-extends Node
+extends Node2D
 
+@export var item_name: String
 
-var character
-var gui
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

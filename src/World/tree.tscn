@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/World/tree.gd" id="1_4ovhk"]
 [ext_resource type="Texture2D" uid="uid://cgriqqenppnxl" path="res://assets/mystic_woods_free_2.1/sprites/objects/tree.png" id="2_pypmv"]
 [ext_resource type="Script" path="res://src/World/TreeSprite.gd" id="3_4h8t4"]
-[ext_resource type="PackedScene" uid="uid://bp2ho8xs7k8t1" path="res://src/Utils/damage_timer.tscn" id="4_k2jwj"]
+[ext_resource type="PackedScene" uid="uid://b2j8pa2vqj4vh" path="res://src/Utils/health.tscn" id="6_ged2s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52hq4"]
 size = Vector2(26, 19)
@@ -64,4 +64,8 @@ libraries = {
 "": SubResource("AnimationLibrary_m1b7w")
 }
 
-[node name="DamageTimer" parent="." instance=ExtResource("4_k2jwj")]
+[node name="Health" parent="." instance=ExtResource("6_ged2s")]
+max_health = 5
+
+[connection signal="die" from="Health" to="." method="_on_health_die"]
+[connection signal="hit" from="Health" to="." method="_on_health_hit"]

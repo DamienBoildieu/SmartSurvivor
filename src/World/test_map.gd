@@ -7,12 +7,7 @@ extends TileMap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	gui.health_bar.max_value = player.max_health
-	gui.energy_bar.max_value = player.max_energy
-	gui.food_bar.max_value = player.max_hungry
-	gui.water_bar.max_value = player.max_thirsty
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	gui.health_bar.max_value = player.health.max_health
+	gui.energy_bar.max_value = player.get_node("Energy").max_need
+	gui.food_bar.max_value = player.get_node("Food").max_need
+	gui.water_bar.max_value = player.get_node("Water").max_need

@@ -1,5 +1,6 @@
 extends Timer
 
+class_name DamageTimer
 
 var can_take_damage: bool = true
 
