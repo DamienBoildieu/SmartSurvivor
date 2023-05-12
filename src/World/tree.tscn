@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://0q5w8fdwktm6"]
+[gd_scene load_steps=10 format=3 uid="uid://0q5w8fdwktm6"]
 
 [ext_resource type="Script" path="res://src/World/tree.gd" id="1_4ovhk"]
 [ext_resource type="Texture2D" uid="uid://cgriqqenppnxl" path="res://assets/mystic_woods_free_2.1/sprites/objects/tree.png" id="2_pypmv"]
 [ext_resource type="Script" path="res://src/World/TreeSprite.gd" id="3_4h8t4"]
+[ext_resource type="PackedScene" uid="uid://cxyme0k7c0aov" path="res://src/Utils/drop_item.tscn" id="5_4mfpg"]
 [ext_resource type="PackedScene" uid="uid://b2j8pa2vqj4vh" path="res://src/Utils/health.tscn" id="6_ged2s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52hq4"]
@@ -66,6 +67,8 @@ libraries = {
 
 [node name="Health" parent="." instance=ExtResource("6_ged2s")]
 max_health = 5
+
+[node name="DropItem" parent="." instance=ExtResource("5_4mfpg")]
 
 [connection signal="die" from="Health" to="." method="_on_health_die"]
 [connection signal="hit" from="Health" to="." method="_on_health_hit"]

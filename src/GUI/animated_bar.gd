@@ -1,6 +1,6 @@
+class_name AnimatedBar
 extends TextureProgressBar
 
-class_name AnimatedBar
 
 @export_category("Tween parameters")
 @export var tween_duration: float = 0.7

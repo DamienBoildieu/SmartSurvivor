@@ -1,6 +1,6 @@
+class_name TopDownCharacter
 extends CharacterBody2D
 
-class_name TopDownCharacter
 
 enum State {IDLE, WALK, ATTACK, DIE}
 
@@ -13,23 +13,30 @@ const CharToAnim: Dictionary = {
 }
 
 
-signal die
+signal item_picked(item: Item)
 
 
 @export var max_speed: float = 150.0
 
-
-@onready var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.get("parameters/playback")
-@onready var health: Health = $Health
-@onready var animation_tree = $AnimationTree
 var speed: float = max_speed
-var state: State = State.IDLE
 var direction: Vector2 = Vector2(0., -1.)
+var state: State = State.IDLE
+@onready
+var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.get("parameters/playback")
+@onready var health: Health = $Health
+@onready var energy: Need = $Energy
+@onready var water: Need = $Water
+@onready var food: Need = $Food
+@onready var inventory: Inventory = $Inventory
+@onready var animation_tree = $AnimationTree
+
+
+func _ready():
+	# Not working by setting it to true in the editor
+	$Sprite2D/AttackArea/CollisionShape2D.disabled = true
 
 
 func _physics_process(_delta):
-	if health.is_dead():
-		state = State.DIE
 	update_animation()
 	move_and_slide()
 
@@ -82,3 +89,15 @@ func _on_energy_lack_need():
 
 func _on_food_lack_need():
 	health.take_damage(1)
+
+
+func _on_health_die():
+	return
+	state = State.DIE
+	velocity = Vector2.ZERO
+
+
+func _on_interaction_area_area_entered(area):
+	if area is PickableItem:
+		inventory.add_item(area.item, area.quantity)
+		item_picked.emit(area)

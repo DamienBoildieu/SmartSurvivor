@@ -1,6 +1,5 @@
-extends Node
-
 class_name Health
+extends Node
 
 
 signal health_updated(new_health: int)
@@ -13,7 +12,7 @@ signal die
 @export var hurtable: bool = true
 
 
-var health: int = max_health
+@onready var health: int = max_health
 @onready var damage_timer: DamageTimer = $DamageTimer
 
 

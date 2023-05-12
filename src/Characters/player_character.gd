@@ -1,9 +1,10 @@
-extends TopDownCharacter
-
 class_name PlayerCharacter
+extends TopDownCharacter
 
 
 func handle_inputs() -> void:
+	if state == State.DIE:
+		return
 	if Input.is_action_just_pressed("attack"):
 		state = State.ATTACK
 		return

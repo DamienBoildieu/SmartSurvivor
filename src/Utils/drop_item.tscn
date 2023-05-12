@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxyme0k7c0aov"]
+
+[ext_resource type="Script" path="res://src/Utils/drop_item.gd" id="1_jtt0e"]
+[ext_resource type="PackedScene" uid="uid://dfmjan2k54voq" path="res://src/Items/pickable_item.tscn" id="3_wmthg"]
+
+[node name="DropItem" type="Node"]
+script = ExtResource("1_jtt0e")
+obj_template = ExtResource("3_wmthg")

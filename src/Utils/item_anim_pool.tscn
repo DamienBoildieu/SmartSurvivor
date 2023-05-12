@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwnda3pn3wok0"]
+
+[ext_resource type="Script" path="res://src/Utils/generic_pool.gd" id="1_fvrt8"]
+[ext_resource type="PackedScene" uid="uid://dsldyj4faubq1" path="res://src/GUI/pick_item_anim.tscn" id="2_fuqor"]
+
+[node name="item_anim_pool" type="Node"]
+script = ExtResource("1_fvrt8")
+obj_template = ExtResource("2_fuqor")

@@ -1,6 +1,5 @@
-extends Node
-
 class_name Need
+extends Node
 
 
 signal need_updated(new_value: int)
@@ -19,7 +18,7 @@ signal lack_need
 			timer.stop()
 
 
-var need_value: int = max_need
+@onready var need_value: int = max_need
 @onready var timer: Timer = $Timer
 
 

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfmjan2k54voq"]
+
+[ext_resource type="Script" path="res://src/Items/pickable_item.gd" id="1_efh6q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqpnt"]
+size = Vector2(32, 32)
+
+[node name="PickableItem" type="Area2D"]
+script = ExtResource("1_efh6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uqpnt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+region_enabled = true
