@@ -25,7 +25,7 @@ func _ready():
 
 
 func cut_tree() -> void:
-	var nb_wood = randi()%max_wood
+	var nb_wood = randi()%max_wood+1
 	GlobalDropItem.drop_item(wood, nb_wood, position, collision_shape.shape.size)
 	# drop_item.drop_item(wood, nb_wood, position, collision_shape.shape.size)
 	# ressources.item = item

@@ -19,14 +19,17 @@ var label: Label
 
 
 func _ready():
-	sprite = $DisplayContainer/Sprite2D
-	label = $DisplayContainer/Label
+	sprite = $DisplayContainer/HBoxContainer/Control/Sprite2D
+	label = $DisplayContainer/HBoxContainer/Label
 	is_ready = true
 	update_item()
 
 
 func update_item() -> void:
-	sprite = item.sprite
+	sprite.texture = item.sprite.texture
+	sprite.region_enabled = item.sprite.region_enabled
+	sprite.region_rect = item.sprite.region_rect
+	sprite.scale = item.sprite.scale
 	label.text = str(item.quantity)
 
 
@@ -35,4 +38,7 @@ func play_anim() -> void:
 
 
 func _on_animation_player_animation_finished(anim_name):
+	var parent: Node = get_parent()
+	if parent != null:
+		parent.remove_child(self)
 	GlobalItemAnimPool.add_object(self)
