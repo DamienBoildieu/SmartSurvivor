@@ -2,6 +2,9 @@ class_name PickItemAnim
 extends Node2D
 
 
+signal anim_finished(anim: PickItemAnim)
+
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var animation_name: String = "default"
 @export var item: PickableItem:
@@ -16,6 +19,7 @@ extends Node2D
 var is_ready: bool = false
 var sprite: Sprite2D
 var label: Label
+var rich_text_label: RichTextLabel
 
 
 func _ready():
@@ -37,8 +41,5 @@ func play_anim() -> void:
 	animation_player.play(animation_name)
 
 
-func _on_animation_player_animation_finished(anim_name):
-	var parent: Node = get_parent()
-	if parent != null:
-		parent.remove_child(self)
-	GlobalItemAnimPool.add_object(self)
+func _on_animation_player_animation_finished(_anim_name):
+	anim_finished.emit(self)

@@ -28,8 +28,15 @@ func _input(event):
 
 
 func play_pick_anim(anim: PickItemAnim) -> void:
+	anim.anim_finished.connect(_on_pick_anim_finished)
 	canvas.add_child(anim)
 	anim.play_anim()
+
+
+func _on_pick_anim_finished(anim: PickItemAnim) -> void:
+	anim.anim_finished.disconnect(_on_pick_anim_finished)
+	canvas.remove_child(anim)
+	GlobalItemAnimPool.add_object(anim)
 
 
 func _on_player_character_item_picked(item: PickableItem):
