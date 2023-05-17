@@ -6,6 +6,7 @@ extends TileMap
 @onready var gui: GUI = $CanvasLayer/GUI
 @onready var player: TopDownCharacter = $PlayerCharacter
 @onready var pick_item_anim: PackedScene = preload("res://src/GUI/pick_item_anim.tscn")
+@onready var inventory_menu: InventoryMenu = $CanvasLayer/InventoryMenu
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +18,8 @@ func _ready():
 	gui.energy_bar.max_value = player.energy.max_need
 	gui.food_bar.max_value = player.food.max_need
 	gui.water_bar.max_value = player.water.max_need
+	inventory_menu.visible = false
+	inventory_menu.setup_inventory(player.inventory)
 
 
 func _on_spawn(item: PickableItem) -> void:
@@ -25,7 +28,7 @@ func _on_spawn(item: PickableItem) -> void:
 
 func _input(event):
 	if event.is_action_pressed("inventory"):
-		pass
+		inventory_menu.visible = !inventory_menu.visible
 
 
 func play_pick_anim(anim: PickItemAnim) -> void:

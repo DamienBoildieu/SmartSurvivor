@@ -6,19 +6,19 @@ extends HSplitContainer
 @onready var item_info: ReferenceRect = $ReferenceRect
 
 
-var inventory_item: PackedScene = preload("res://src/GUI/inventory_item.tscn")
+var inventory_item_template: PackedScene = preload("res://src/GUI/inventory_item.tscn")
 var inventory: Inventory
 
 
 func setup_inventory(new_inventory: Inventory) -> void:
 	inventory = new_inventory
-	for c_node in grid.children():
+	for c_node in grid.get_children():
 		c_node.queue_free()
 	
 	for item in inventory.items:
-		var item_icon = inventory_item.instantiate()
+		var item_icon = inventory_item_template.instantiate()
 		item_icon.item = item
-		item_icon.label = str(inventory.items[item])
+		item_icon.quantity = inventory.items[item]
 		
 		grid.add_child(item_icon)
 
@@ -33,8 +33,8 @@ func _process(delta):
 	pass
 
 
-func _on_inventory_changed(inventory: Inventory) -> void:
-	setup_inventory(inventory)
+func _on_inventory_changed(new_inventory: Inventory) -> void:
+	setup_inventory(new_inventory)
 
 
 func _on_item_clicked(inventory_item: InventoryItem) -> void:

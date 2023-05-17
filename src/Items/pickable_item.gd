@@ -30,8 +30,6 @@ func _ready():
 
 func update_item() -> void:
 	sprite.texture = item.texture
-	sprite.region_enabled = true
-	sprite.region_rect = item.rect
 	sprite.scale = item.scale
-	collision_shape.shape.size = Vector2(item.rect.size)
+	collision_shape.shape.size = item.texture.get_size()
 	collision_shape.scale = item.scale

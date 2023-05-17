@@ -1,5 +1,5 @@
 class_name InventoryItem
-extends ReferenceRect
+extends PanelContainer
 
 
 @export var item: Item:
@@ -9,9 +9,16 @@ extends ReferenceRect
 		item = new_item
 		if is_ready:
 			update_item()
+@export var quantity: int:
+	get:
+		return quantity
+	set(new_quantity):
+		quantity = new_quantity
+		if is_ready:
+			update_quantity()
 
 
-@onready var sprite: Sprite2D
+@onready var sprite: TextureRect
 @onready var label: Label
 
 var is_ready: bool = false
@@ -19,17 +26,19 @@ var is_ready: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite = $Sprite2D
-	label = $Label
+	sprite = $HBoxContainer/TextureRect
+	label = $HBoxContainer/Label
 	is_ready = true
 	update_item()
+	update_quantity()
 
 
 func update_item() -> void:
-	sprite.texture = item.sprite.texture
-	sprite.region_enabled = item.sprite.region_enabled
-	sprite.region_rect = item.sprite.region_rect
-	sprite.scale = item.sprite.scale
+	sprite.texture = item.texture
+
+
+func update_quantity() -> void:
+	label.text = str(quantity)
 
 
 func _on_mouse_entered():

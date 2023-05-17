@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfmjan2k54voq"]
+[gd_scene load_steps=5 format=3 uid="uid://dfmjan2k54voq"]
 
 [ext_resource type="Script" path="res://src/Items/pickable_item.gd" id="1_efh6q"]
+[ext_resource type="Texture2D" uid="uid://bqrpuch1ole7g" path="res://assets/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="2_xh22i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqpnt"]
 size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssvrs"]
+atlas = ExtResource("2_xh22i")
+region = Rect2(0, 0, 32, 32)
 
 [node name="PickableItem" type="Area2D"]
 script = ExtResource("1_efh6q")
@@ -12,4 +17,4 @@ script = ExtResource("1_efh6q")
 shape = SubResource("RectangleShape2D_uqpnt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-region_enabled = true
+texture = SubResource("AtlasTexture_ssvrs")

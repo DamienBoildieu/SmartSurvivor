@@ -10,17 +10,15 @@ var items: Dictionary = {}
 
 
 func add_item(item, amount: int):
-	print_debug(items)
 	var current_amount = items.get(item, 0)
 	items[item] = current_amount + amount
 	inventory_changed.emit(self)
-	print_debug(items)
 
 
 func drop(item, amount):
 	var current_amount = items.get(item, 0)
 	if amount > current_amount:
-		print("You don't have that much of %s", item.name)
+		print_debug("You don't have that much of %s", item.name)
 	if current_amount != 0:
 		if amount >= current_amount:
 			items.erase(item)

@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://src/GUI/inventory_menu.gd" id="1_f3qse"]
 
 [node name="InventoryMenu" type="HSplitContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 78.0
+offset_bottom = 79.0
 script = ExtResource("1_f3qse")
 
 [node name="GridContainer" type="GridContainer" parent="."]
@@ -12,4 +12,5 @@ layout_mode = 2
 columns = 4
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
+visible = false
 layout_mode = 2

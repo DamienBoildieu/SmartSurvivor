@@ -1,23 +1,33 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4vsnxiwmg1q3"]
 
 [ext_resource type="Script" path="res://src/GUI/inventory_item.gd" id="1_5yckh"]
-[ext_resource type="Texture2D" uid="uid://bqrpuch1ole7g" path="res://assets/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="2_q7x3v"]
+[ext_resource type="Texture2D" uid="uid://defl4y6yctviw" path="res://src/Items/default_item_atlas.tres" id="2_wrxj3"]
 
-[node name="InventoryItem" type="ReferenceRect"]
+[node name="InventoryItem" type="PanelContainer"]
+anchors_preset = -1
+anchor_left = -0.025
+anchor_top = -0.048
+anchor_right = 0.034
+anchor_bottom = 0.034
+offset_left = 17.8
+offset_top = 25.104
+offset_right = -1.168
+offset_bottom = 3.968
 script = ExtResource("1_5yckh")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_q7x3v")
-region_enabled = true
-region_rect = Rect2(0, 0, 32, 32)
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 12.0
-offset_top = -2.0
-offset_right = 52.0
-offset_bottom = 24.0
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_wrxj3")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
 text = "123"
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

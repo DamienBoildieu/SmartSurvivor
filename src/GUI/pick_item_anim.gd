@@ -18,24 +18,27 @@ signal anim_finished(anim: PickItemAnim)
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var is_ready: bool = false
-var sprite: Sprite2D
+var sprite: TextureRect
 var label: Label
 var rich_text_label: RichTextLabel
 
 
 func _ready():
-	sprite = $DisplayContainer/HBoxContainer/Control/Sprite2D
+	sprite = $DisplayContainer/HBoxContainer/TextureRect
 	label = $DisplayContainer/HBoxContainer/Label
 	is_ready = true
 	update_item()
 
 
 func update_item() -> void:
-	sprite.texture = item.sprite.texture
-	sprite.region_enabled = item.sprite.region_enabled
-	sprite.region_rect = item.sprite.region_rect
-	sprite.scale = item.sprite.scale
+
 	label.text = str(item.quantity)
+	var ratio = item.sprite.texture.get_width()/float(item.sprite.texture.get_height())
+	print_debug(ratio)
+	sprite.custom_minimum_size = Vector2(label.size.y*ratio, label.size.y)
+	sprite.texture = item.sprite.texture
+	print_debug(label.size.y)
+	print_debug(sprite.texture.get_size())
 
 
 func play_anim() -> void:

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://fa2hkjrjma62"]
+[gd_scene load_steps=10 format=3 uid="uid://fa2hkjrjma62"]
 
 [ext_resource type="Script" path="res://src/World/test_map.gd" id="1_3u2gp"]
 [ext_resource type="Texture2D" uid="uid://b4mneqkdjmk5l" path="res://assets/mystic_woods_free_2.1/sprites/tilesets/plains.png" id="1_21qkk"]
 [ext_resource type="PackedScene" uid="uid://0q5w8fdwktm6" path="res://src/World/tree.tscn" id="1_vwais"]
 [ext_resource type="PackedScene" uid="uid://datjx1ikwqurc" path="res://src/Characters/player_character.tscn" id="2_sewyk"]
 [ext_resource type="PackedScene" uid="uid://dssromjsg4d3x" path="res://src/GUI/gui.tscn" id="3_oquv4"]
+[ext_resource type="PackedScene" uid="uid://bvjg0whwcbk0b" path="res://src/GUI/inventory_menu.tscn" id="5_vnhq8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5xtns"]
 resource_name = "Plains"
@@ -103,6 +104,12 @@ position = Vector2(243, 318)
 offset_bottom = 1004.0
 scale = Vector2(0.217201, 0.0959813)
 
+[node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("5_vnhq8")]
+offset_left = 138.0
+offset_top = 107.0
+offset_right = 826.0
+offset_bottom = 647.0
+
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_sewyk")]
 z_index = 1
 
@@ -114,5 +121,6 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_4qeyy")
 [connection signal="need_updated" from="PlayerCharacter/Water" to="CanvasLayer/GUI" method="_on_water_need_updated"]
 [connection signal="need_updated" from="PlayerCharacter/Energy" to="CanvasLayer/GUI" method="_on_energy_need_updated"]
 [connection signal="need_updated" from="PlayerCharacter/Food" to="CanvasLayer/GUI" method="_on_food_need_updated"]
+[connection signal="inventory_changed" from="PlayerCharacter/Inventory" to="CanvasLayer/InventoryMenu" method="_on_inventory_changed"]
 
 [editable path="PlayerCharacter"]
