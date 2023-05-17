@@ -7,6 +7,7 @@ extends TileMap
 @onready var player: TopDownCharacter = $PlayerCharacter
 @onready var pick_item_anim: PackedScene = preload("res://src/GUI/pick_item_anim.tscn")
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GlobalDropItem.spawn.connect(_on_spawn)

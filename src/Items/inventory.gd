@@ -1,6 +1,8 @@
+class_name Inventory
 extends Node
 
-class_name Inventory
+
+signal inventory_changed(items: Inventory)
 
 
 var items: Dictionary = {}
@@ -11,6 +13,7 @@ func add_item(item, amount: int):
 	print_debug(items)
 	var current_amount = items.get(item, 0)
 	items[item] = current_amount + amount
+	inventory_changed.emit(self)
 	print_debug(items)
 
 
@@ -24,6 +27,7 @@ func drop(item, amount):
 		else:
 			items[item] -= amount
 		GlobalDropItem.drop_item(item, amount, owner.position)
+		inventory_changed.emit(self)
 		# drop_item.drop_item(item, amount, owner.position)
 
 

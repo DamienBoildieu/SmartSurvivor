@@ -5,7 +5,6 @@ extends Node2D
 signal anim_finished(anim: PickItemAnim)
 
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var animation_name: String = "default"
 @export var item: PickableItem:
 	get:
@@ -15,6 +14,8 @@ signal anim_finished(anim: PickItemAnim)
 		if is_ready:
 			update_item()
 
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var is_ready: bool = false
 var sprite: Sprite2D

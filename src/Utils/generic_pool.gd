@@ -4,8 +4,9 @@ extends Node
 
 @export var obj_template: PackedScene
 @export var pool_size: int = 20
-var pool: Array[Node] = []
 
+
+var pool: Array[Node] = []
 
 
 func get_object() -> Node:

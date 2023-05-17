@@ -1,6 +1,7 @@
 class_name PickableItem
 extends Area2D
 
+
 @export var default_quantity: int = 1
 @export var item: Item:
 	get:
