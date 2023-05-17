@@ -105,13 +105,14 @@ offset_bottom = 1004.0
 scale = Vector2(0.217201, 0.0959813)
 
 [node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("5_vnhq8")]
-offset_left = 138.0
-offset_top = 107.0
-offset_right = 826.0
-offset_bottom = 647.0
+offset_left = 2.0
+offset_top = 100.0
+offset_right = 1050.08
+offset_bottom = 567.24
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_sewyk")]
 z_index = 1
+position = Vector2(506, 349)
 
 [node name="AnimationTree" parent="PlayerCharacter" index="3"]
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_4qeyy")

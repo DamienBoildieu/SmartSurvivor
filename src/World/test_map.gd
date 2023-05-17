@@ -33,23 +33,22 @@ func _input(event):
 
 func play_pick_anim(anim: PickItemAnim) -> void:
 	anim.anim_finished.connect(_on_pick_anim_finished)
-	canvas.add_child(anim)
+	anim.position = -player.sprite.get_rect().size/2
+	anim.position.x /= 2
+	player.add_child(anim)
 	anim.play_anim()
 
 
 func _on_pick_anim_finished(anim: PickItemAnim) -> void:
 	anim.anim_finished.disconnect(_on_pick_anim_finished)
-	canvas.remove_child(anim)
+	player.remove_child(anim)
 	GlobalItemAnimPool.add_object(anim)
 
 
 func _on_player_character_item_picked(item: PickableItem):
 	var pick_anim : PickItemAnim = GlobalItemAnimPool.get_object()
-	var item_pos: Vector2 = item.position
-	item_pos -= Vector2(16, 32)
-	var screen_coord = get_viewport_transform() * (get_global_transform() * item_pos)
-	pick_anim.position = screen_coord
 	pick_anim.item = item
+	pick_anim.scale = item.scale
 	call_deferred("play_pick_anim", pick_anim)
 	remove_child(item)
 	GlobalDropItem.add_object(item)

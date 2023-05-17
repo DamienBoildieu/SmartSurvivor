@@ -726,7 +726,6 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 size = Vector2(11, 6)
 
 [node name="TopDownCharacter" type="CharacterBody2D"]
-position = Vector2(506, 349)
 motion_mode = 1
 script = ExtResource("1_30mdk")
 metadata/_edit_group_ = true

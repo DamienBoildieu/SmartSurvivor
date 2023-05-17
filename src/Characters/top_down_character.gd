@@ -29,7 +29,7 @@ var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.
 @onready var food: Need = $Food
 @onready var inventory: Inventory = $Inventory
 @onready var animation_tree = $AnimationTree
-
+@onready var sprite: Sprite2D = $Sprite2D
 
 func _ready():
 	# Not working by setting it to true in the editor

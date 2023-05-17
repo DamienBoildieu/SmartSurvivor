@@ -29,7 +29,6 @@ func _ready():
 
 
 func update_item() -> void:
+	scale = item.scale
 	sprite.texture = item.texture
-	sprite.scale = item.scale
 	collision_shape.shape.size = item.texture.get_size()
-	collision_shape.scale = item.scale

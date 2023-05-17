@@ -42,13 +42,5 @@ func update_quantity() -> void:
 	label.text = str(quantity)
 
 
-func _on_mouse_entered():
-	pass # Replace with function body.
-
-
-func _on_mouse_exited():
-	pass # Replace with function body.
-
-
 func _on_gui_input(event):
 	pass # Replace with function body.

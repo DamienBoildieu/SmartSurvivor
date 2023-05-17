@@ -15,7 +15,6 @@ var remaining_days: int = max_cut_days
 @onready var animation_player = $AnimationPlayer
 @onready var health: Health = $Health
 @onready var collision_shape: CollisionShape2D = $TreeCollisionShape
-# @onready var drop_item: DropItem = $DropItem
 @onready var wood = preload("res://src/Items/wood.tres")
 
 
