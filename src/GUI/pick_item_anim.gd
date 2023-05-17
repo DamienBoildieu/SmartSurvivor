@@ -31,14 +31,8 @@ func _ready():
 
 
 func update_item() -> void:
-
 	label.text = str(item.quantity)
-	var ratio = item.sprite.texture.get_width()/float(item.sprite.texture.get_height())
-	print_debug(ratio)
-	sprite.custom_minimum_size = Vector2(label.size.y*ratio, label.size.y)
 	sprite.texture = item.sprite.texture
-	print_debug(label.size.y)
-	print_debug(sprite.texture.get_size())
 
 
 func play_anim() -> void:

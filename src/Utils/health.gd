@@ -8,7 +8,7 @@ signal hit
 signal die
 
 
-@export var max_health: int = 10
+@export var max_health: int = 100
 @export var hurtable: bool = true
 
 

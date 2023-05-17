@@ -1,9 +1,8 @@
 class_name InventoryMenu
-extends HSplitContainer
+extends MarginContainer
 
 
-@onready var grid: GridContainer = $GridContainer
-@onready var item_info: ReferenceRect = $ReferenceRect
+@onready var grid: GridContainer = $Panel/VBoxContainer/GridContainer
 
 
 var inventory_item_template: PackedScene = preload("res://src/GUI/inventory_item.tscn")

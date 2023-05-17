@@ -13,6 +13,8 @@ offset_left = 17.8
 offset_top = 25.104
 offset_right = -1.168
 offset_bottom = 3.968
+tooltip_text = "Description"
+mouse_filter = 1
 script = ExtResource("1_5yckh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

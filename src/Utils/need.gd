@@ -6,7 +6,7 @@ signal need_updated(new_value: int)
 signal lack_need
 
 
-@export var max_need: int = 5
+@export var max_need: int = 100
 @export var autoupdate: bool = true:
 	get:
 		return autoupdate

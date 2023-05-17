@@ -35,6 +35,7 @@ func _ready():
 
 func update_item() -> void:
 	sprite.texture = item.texture
+	tooltip_text = item.description
 
 
 func update_quantity() -> void:

@@ -26,14 +26,7 @@ func _ready():
 
 func cut_tree() -> void:
 	var nb_wood = randi()%max_wood+1
-	GlobalDropItem.drop_item(wood, nb_wood, position, collision_shape.shape.size)
-	# drop_item.drop_item(wood, nb_wood, position, collision_shape.shape.size)
-	# ressources.item = item
-	# var spawn_translation: Vector2 = Vector2((randi()%3)-1, (randi()%3)-1)
-	# if spawn_translation == Vector2.ZERO:
-	#	spawn_translation.y -= 1
-	# ressources.position = position + spawn_translation * collision_shape.shape.size
-	# owner.call_deferred("add_child", ressources)
+	GlobalDropItem.drop_item(wood, nb_wood, collision_shape.global_position, collision_shape.shape.size)
 	cut.emit(nb_wood)
 	sprite.load_trunk()
 
