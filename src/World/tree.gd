@@ -18,7 +18,6 @@ var remaining_days: int = max_cut_days
 @onready var wood = preload("res://src/Items/wood.tres")
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.load_tree()
 

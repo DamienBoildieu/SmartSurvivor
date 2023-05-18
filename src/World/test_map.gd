@@ -26,6 +26,10 @@ func _on_spawn(item: PickableItem) -> void:
 	call_deferred("add_child", item)
 
 
+func spawn_item(item: PickableItem) -> void:
+	add_child(item)
+
+
 func _input(event):
 	if event.is_action_pressed("inventory"):
 		inventory_menu.visible = !inventory_menu.visible

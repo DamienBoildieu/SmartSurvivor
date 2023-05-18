@@ -788,4 +788,5 @@ shape = SubResource("RectangleShape2D_8aik2")
 [connection signal="lack_need" from="Water" to="." method="_on_water_lack_need"]
 [connection signal="lack_need" from="Energy" to="." method="_on_energy_lack_need"]
 [connection signal="lack_need" from="Food" to="." method="_on_food_lack_need"]
+[connection signal="drop_item" from="Inventory" to="." method="_on_inventory_drop_item"]
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]

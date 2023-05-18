@@ -98,6 +98,10 @@ z_index = 1
 z_index = 1
 position = Vector2(243, 318)
 
+[node name="Tree3" parent="." instance=ExtResource("1_vwais")]
+z_index = 1
+position = Vector2(275, 296)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("3_oquv4")]

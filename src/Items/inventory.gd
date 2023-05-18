@@ -2,11 +2,11 @@ class_name Inventory
 extends Node
 
 
+signal drop_item(item: Item, amount: int)
 signal inventory_changed(items: Inventory)
 
 
 var items: Dictionary = {}
-# @onready var drop_item: DropItem = $DropItem
 
 
 func add_item(item, amount: int):
@@ -24,7 +24,7 @@ func drop(item, amount):
 			items.erase(item)
 		else:
 			items[item] -= amount
-		GlobalDropItem.drop_item(item, amount, owner.position-Vector2.ONE)
+		drop_item.emit(item, amount)
 		inventory_changed.emit(self)
 		# drop_item.drop_item(item, amount, owner.position)
 
