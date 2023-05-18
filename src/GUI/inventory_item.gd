@@ -2,6 +2,9 @@ class_name InventoryItem
 extends PanelContainer
 
 
+signal item_clicked(item: InventoryItem)
+
+
 @export var item: Item:
 	get:
 		return item
@@ -18,9 +21,8 @@ extends PanelContainer
 			update_quantity()
 
 
-@onready var sprite: TextureRect
-@onready var label: Label
-
+var sprite: TextureRect
+var label: Label
 var is_ready: bool = false
 
 
@@ -42,5 +44,7 @@ func update_quantity() -> void:
 	label.text = str(quantity)
 
 
-func _on_gui_input(event):
-	pass # Replace with function body.
+func _on_gui_input(event: InputEvent):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			item_clicked.emit(self)

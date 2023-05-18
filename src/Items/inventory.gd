@@ -24,7 +24,7 @@ func drop(item, amount):
 			items.erase(item)
 		else:
 			items[item] -= amount
-		GlobalDropItem.drop_item(item, amount, owner.position)
+		GlobalDropItem.drop_item(item, amount, owner.position-Vector2.ONE)
 		inventory_changed.emit(self)
 		# drop_item.drop_item(item, amount, owner.position)
 
