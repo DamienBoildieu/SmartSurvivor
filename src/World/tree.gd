@@ -2,6 +2,7 @@ extends StaticBody2D
 
 
 signal cut(nb_wood)
+signal die(Tree)
 
 
 @export var max_cut_days: int = 5
@@ -23,20 +24,26 @@ func _ready():
 
 
 func cut_tree() -> void:
-	var nb_wood = randi()%max_wood+1
-	GlobalDropItem.drop_item(wood, nb_wood, collision_shape.global_position, collision_shape.shape.size)
-	cut.emit(nb_wood)
-	sprite.load_trunk()
+	if not is_cutted:
+		var nb_wood = randi()%max_wood+1
+		GlobalDropItem.drop_item(wood, nb_wood, collision_shape.global_position, collision_shape.shape.size)
+		cut.emit(nb_wood)
+		sprite.load_trunk()
+		is_cutted = true
 
 
 func grow() -> void:
 	health.add_health(health.max_health)
 	sprite.load_tree()
+	is_cutted = false
 
 
 func _on_health_die():
-	cut_tree()
+	die.emit(self)
+	self.queue_free()
 
 
 func _on_health_hit():
 	animation_player.play("hit")
+	if health.health < 3:
+		cut_tree()

@@ -98,7 +98,7 @@ z_index = 1
 z_index = 1
 position = Vector2(243, 318)
 
-[node name="Tree3" parent="." instance=ExtResource("1_vwais")]
+[node name="Tree3" parent="." groups=["RessourceGenerator"] instance=ExtResource("1_vwais")]
 z_index = 1
 position = Vector2(275, 296)
 

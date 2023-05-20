@@ -17,20 +17,20 @@ signal die
 
 
 func add_health(health_point: int) -> void:
-	heal.emit()
 	health += health_point
 	if health > health_point:
 		health = health_point
+	heal.emit()
 	health_updated.emit(health)
 
 
 func take_damage(damage: int):
 	if not is_dead() and can_take_damage():
 		damage_timer.start_timer() 
-		hit.emit()
 		if damage > health:
 			damage = health
 		health -= damage
+		hit.emit()
 		health_updated.emit(health)
 		if is_dead():
 			die.emit()
