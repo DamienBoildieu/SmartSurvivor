@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RecipeBook" load_steps=3 format=3 uid="uid://chx8s7if7ls4t"]
+
+[ext_resource type="Resource" uid="uid://cui6abgbqifbd" path="res://src/Recipes/campfire.tres" id="1_st0ki"]
+[ext_resource type="Script" path="res://src/Recipes/recipe_book.gd" id="2_4tkpj"]
+
+[resource]
+script = ExtResource("2_4tkpj")
+recipes = Array[Resource("res://src/Recipes/recipe.gd")]([ExtResource("1_st0ki")])

@@ -2,9 +2,6 @@ class_name Campfire
 extends StaticBody2D
 
 
-@export var recipe: Recipe
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

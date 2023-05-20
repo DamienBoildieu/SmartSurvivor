@@ -1,9 +1,10 @@
-[gd_scene load_steps=56 format=3 uid="uid://cl1obce8d36g3"]
+[gd_scene load_steps=57 format=3 uid="uid://cl1obce8d36g3"]
 
 [ext_resource type="Script" path="res://src/Characters/top_down_character.gd" id="1_30mdk"]
 [ext_resource type="Texture2D" uid="uid://dwy37uubi1v4k" path="res://assets/mystic_woods_free_2.1/sprites/characters/player.png" id="1_o6nid"]
 [ext_resource type="Script" path="res://src/Items/inventory.gd" id="2_hibwa"]
 [ext_resource type="AudioStream" uid="uid://c3xnbb3ji50id" path="res://assets/Darkworld Audio - Survival Effects [Free]/Tools/DesignedAxe3.wav" id="3_ngrnj"]
+[ext_resource type="Resource" uid="uid://chx8s7if7ls4t" path="res://src/Recipes/player_recipes.tres" id="3_r2qjq"]
 [ext_resource type="PackedScene" uid="uid://b2j8pa2vqj4vh" path="res://src/Utils/health.tscn" id="4_k0gqj"]
 [ext_resource type="PackedScene" uid="uid://bcxqiqy23c4vc" path="res://src/Utils/need.tscn" id="5_3pnnt"]
 
@@ -732,6 +733,7 @@ size = Vector2(11, 6)
 motion_mode = 1
 script = ExtResource("1_30mdk")
 inventory = SubResource("Resource_q4qbv")
+recipes = ExtResource("3_r2qjq")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

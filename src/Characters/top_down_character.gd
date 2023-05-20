@@ -18,6 +18,7 @@ signal item_picked(item: Item)
 
 @export var max_speed: float = 150.0
 @export var inventory: Inventory
+@export var recipes: RecipeBook
 
 
 var speed: float = max_speed

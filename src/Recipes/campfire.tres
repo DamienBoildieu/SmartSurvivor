@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=3 format=3 uid="uid://cui6abgbqifbd"]
+
+[ext_resource type="PackedScene" uid="uid://b7scv2nmdttgx" path="res://src/World/campfire.tscn" id="1_828tn"]
+[ext_resource type="Script" path="res://src/Recipes/recipe.gd" id="1_xuqqj"]
+
+[resource]
+script = ExtResource("1_xuqqj")
+requires = {}
+building = ExtResource("1_828tn")
