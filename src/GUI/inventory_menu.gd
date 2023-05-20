@@ -12,6 +12,11 @@ var inventory: Inventory
 
 func setup_inventory(new_inventory: Inventory) -> void:
 	inventory = new_inventory
+	inventory.inventory_changed.connect(_on_inventory_changed)
+	refresh_inventory()
+
+
+func refresh_inventory() -> void:
 	for c_node in grid.get_children():
 		c_node.queue_free()
 	
@@ -23,8 +28,8 @@ func setup_inventory(new_inventory: Inventory) -> void:
 		grid.add_child(item_icon)
 
 
-func _on_inventory_changed(new_inventory: Inventory) -> void:
-	setup_inventory(new_inventory)
+func _on_inventory_changed() -> void:
+	refresh_inventory()
 	item_panel.hide()
 
 

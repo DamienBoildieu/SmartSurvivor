@@ -17,6 +17,8 @@ signal item_picked(item: Item)
 
 
 @export var max_speed: float = 150.0
+@export var inventory: Inventory
+
 
 var speed: float = max_speed
 var direction: Vector2 = Vector2(0., -1.)
@@ -27,7 +29,6 @@ var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.
 @onready var energy: Need = $Energy
 @onready var water: Need = $Water
 @onready var food: Need = $Food
-@onready var inventory: Inventory = $Inventory
 @onready var animation_tree = $AnimationTree
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var interaction_shape = $InteractionArea/CollisionShape2D
@@ -36,6 +37,7 @@ var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.
 func _ready():
 	# Not working by setting it to true in the editor
 	$Sprite2D/AttackArea/CollisionShape2D.disabled = true
+	inventory.drop_item.connect(_on_inventory_drop_item)
 
 
 func _physics_process(_delta):

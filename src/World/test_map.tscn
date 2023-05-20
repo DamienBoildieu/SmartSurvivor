@@ -126,6 +126,5 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_4qeyy")
 [connection signal="need_updated" from="PlayerCharacter/Water" to="CanvasLayer/GUI" method="_on_water_need_updated"]
 [connection signal="need_updated" from="PlayerCharacter/Energy" to="CanvasLayer/GUI" method="_on_energy_need_updated"]
 [connection signal="need_updated" from="PlayerCharacter/Food" to="CanvasLayer/GUI" method="_on_food_need_updated"]
-[connection signal="inventory_changed" from="PlayerCharacter/Inventory" to="CanvasLayer/InventoryMenu" method="_on_inventory_changed"]
 
 [editable path="PlayerCharacter"]
