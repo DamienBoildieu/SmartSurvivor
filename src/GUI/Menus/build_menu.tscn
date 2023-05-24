@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://b2rdciokhritd" path="res://src/GUI/Menus/recipe_panel.tscn" id="2_vrnfm"]
 
 [node name="BuildMenu" type="HSplitContainer"]
-anchors_preset = -1
 script = ExtResource("1_6bdti")
 
 [node name="GridContainer" type="GridContainer" parent="."]

@@ -5,6 +5,8 @@ extends HSplitContainer
 @onready var grid: GridContainer = $GridContainer
 @onready var recipe_panel: RecipePanel = $RecipePanel
 
+
+var recipe_icon_template: PackedScene = preload("res://src/GUI/Menus/recipe_icon.tscn")
 var inventory: Inventory
 var recipes: RecipeBook
 
@@ -35,8 +37,8 @@ func refresh_recipes() -> void:
 		c_node.queue_free()
 	
 	for recipe in recipes.recipes:
-		var icon = TextureRect.new()
-		icon.texture = recipe.texture
+		var icon = recipe_icon_template.instantiate()
+		icon.recipe = recipe
 		grid.add_child(icon)
 
 
