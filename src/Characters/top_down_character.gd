@@ -68,6 +68,7 @@ func update_animation() -> void:
 		# y axis in bleding space is opposed to y axis in game space
 		direction.y = - direction.y
 	apply_blending(next_state, direction)
+
 	animation_state_machine.travel(next_state)
 
 

@@ -1,5 +1,5 @@
 class_name ItemPanel
-extends PanelContainer
+extends VBoxContainer
 
 
 signal drop_item(item: Item, quantity: int)
@@ -30,11 +30,11 @@ var is_ready: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	name_label = $VBoxContainer/NameLabel
-	description_label = $VBoxContainer/DescriptionLabel
-	quantity_label = $VBoxContainer/QuantityLabel
-	use_button = $VBoxContainer/HBoxContainer/UseButton
-	drop_button = $VBoxContainer/HBoxContainer/DropButton
+	name_label = $NameLabel
+	description_label = $DescriptionLabel
+	quantity_label = $QuantityLabel
+	use_button = $HBoxContainer/UseButton
+	drop_button = $HBoxContainer/DropButton
 	is_ready = true
 	update_item()
 

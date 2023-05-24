@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnt0ne6255j1a"]
+
+[ext_resource type="Script" path="res://src/GUI/Menus/item_panel.gd" id="1_c3rqg"]
+
+[node name="ItemPanel" type="VBoxContainer"]
+offset_right = 51.0
+offset_bottom = 50.0
+script = ExtResource("1_c3rqg")
+
+[node name="NameLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+text = "Name"
+fit_content = true
+scroll_active = false
+
+[node name="DescriptionLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Description"
+
+[node name="QuantityLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Quantity: 1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="UseButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Use"
+
+[node name="DropButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Drop"
+
+[connection signal="pressed" from="HBoxContainer/DropButton" to="." method="_on_drop_button_pressed"]

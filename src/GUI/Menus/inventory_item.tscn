@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4vsnxiwmg1q3"]
 
-[ext_resource type="Script" path="res://src/GUI/inventory_item.gd" id="1_5yckh"]
-[ext_resource type="Texture2D" uid="uid://defl4y6yctviw" path="res://src/Items/default_item_atlas.tres" id="2_wrxj3"]
+[ext_resource type="Script" path="res://src/GUI/Menus/inventory_item.gd" id="1_a67lr"]
+[ext_resource type="Texture2D" uid="uid://defl4y6yctviw" path="res://src/Items/default_item_atlas.tres" id="2_2oduw"]
 
 [node name="InventoryItem" type="PanelContainer"]
 anchors_preset = -1
@@ -15,14 +15,14 @@ offset_right = -1.168
 offset_bottom = 3.968
 tooltip_text = "Description"
 mouse_filter = 1
-script = ExtResource("1_5yckh")
+script = ExtResource("1_a67lr")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_wrxj3")
+texture = ExtResource("2_2oduw")
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="HBoxContainer"]

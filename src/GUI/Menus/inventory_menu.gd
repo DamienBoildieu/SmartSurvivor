@@ -1,18 +1,21 @@
 class_name InventoryMenu
-extends PanelContainer
+extends HSplitContainer
 
 
-@onready var grid: GridContainer = $VBoxContainer/HSplitContainer/GridContainer
-@onready var item_panel: ItemPanel = $VBoxContainer/HSplitContainer/ItemPanel
+@onready var grid: GridContainer = $GridContainer
+@onready var item_panel: ItemPanel = $ItemPanel
 
 
-var inventory_item_template: PackedScene = preload("res://src/GUI/inventory_item.tscn")
+var inventory_item_template: PackedScene = preload("res://src/GUI/Menus/inventory_item.tscn")
 var inventory: Inventory
 
 
 func setup_inventory(new_inventory: Inventory) -> void:
-	inventory = new_inventory
-	inventory.inventory_changed.connect(_on_inventory_changed)
+	if new_inventory != inventory:
+		if inventory != null:
+			inventory.inventory_changed.disconnect(_on_inventory_changed)
+		inventory = new_inventory
+		inventory.inventory_changed.connect(_on_inventory_changed)
 	refresh_inventory()
 
 

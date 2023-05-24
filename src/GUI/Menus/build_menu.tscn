@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqmhu3vucu5w7"]
+
+[ext_resource type="Script" path="res://src/GUI/Menus/build_menu.gd" id="1_6bdti"]
+[ext_resource type="PackedScene" uid="uid://b2rdciokhritd" path="res://src/GUI/Menus/recipe_panel.tscn" id="2_vrnfm"]
+
+[node name="BuildMenu" type="HSplitContainer"]
+anchors_preset = -1
+script = ExtResource("1_6bdti")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 4
+
+[node name="RecipePanel" parent="." instance=ExtResource("2_vrnfm")]
+layout_mode = 2
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

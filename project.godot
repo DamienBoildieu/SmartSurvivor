@@ -25,6 +25,10 @@ GlobalBuild="*res://src/Utils/build.gd"
 
 window/stretch/mode="canvas_items"
 
+[dotnet]
+
+project/assembly_name="SmartSurvivor"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

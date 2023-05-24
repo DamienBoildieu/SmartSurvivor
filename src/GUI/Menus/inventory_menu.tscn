@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvjg0whwcbk0b"]
+
+[ext_resource type="Script" path="res://src/GUI/Menus/inventory_menu.gd" id="1_2iy28"]
+[ext_resource type="PackedScene" uid="uid://cnt0ne6255j1a" path="res://src/GUI/Menus/item_panel.tscn" id="2_04ikq"]
+
+[node name="InventoryMenu" type="HSplitContainer"]
+anchors_preset = -1
+anchor_right = 0.085
+anchor_bottom = 0.12
+offset_right = -97.92
+offset_bottom = -77.76
+script = ExtResource("1_2iy28")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 4
+
+[node name="ItemPanel" parent="." instance=ExtResource("2_04ikq")]
+layout_mode = 2
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="drop_item" from="ItemPanel" to="." method="_on_item_panel_drop_item"]
