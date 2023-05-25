@@ -28,6 +28,7 @@ var use_button: Button
 var drop_button: Button
 var is_ready: bool = false
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	name_label = $NameLabel

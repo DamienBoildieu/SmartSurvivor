@@ -5,20 +5,22 @@
 [node name="RecipePanel" type="VBoxContainer"]
 script = ExtResource("1_q4tvh")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="NameLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+fit_content = true
+scroll_active = false
+
+[node name="RequireLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+[node name="BuildButton" type="Button" parent="."]
 layout_mode = 2
+text = "Build"
 
-[node name="Label" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 2
+[connection signal="pressed" from="BuildButton" to="." method="_on_build_button_pressed"]

@@ -21,15 +21,13 @@ signal item_clicked(item: InventoryItem)
 			update_quantity()
 
 
-var sprite: TextureRect
-var label: Label
+@onready var sprite: TextureRect = $HBoxContainer/TextureRect
+@onready var label: Label = $HBoxContainer/Label
 var is_ready: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite = $HBoxContainer/TextureRect
-	label = $HBoxContainer/Label
 	is_ready = true
 	update_item()
 	update_quantity()

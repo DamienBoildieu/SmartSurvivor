@@ -37,9 +37,16 @@ func refresh_recipes() -> void:
 		c_node.queue_free()
 	
 	for recipe in recipes.recipes:
-		var icon = recipe_icon_template.instantiate()
+		var icon := recipe_icon_template.instantiate() as RecipeIcon
 		icon.recipe = recipe
+		icon.can_be_build = inventory == null or GlobalBuild.can_be_build(inventory, recipe)
+		icon.recipe_clicked.connect(_on_recipe_clicked)
 		grid.add_child(icon)
+
+
+func _on_recipe_clicked(recipe: RecipeIcon) -> void:
+	recipe_panel.recipe = recipe.recipe
+	recipe_panel.show()
 
 
 func _on_inventory_changed() -> void:

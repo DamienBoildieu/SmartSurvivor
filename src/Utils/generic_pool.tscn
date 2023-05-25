@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0ycw1g1ulhf8"]
+[gd_scene load_steps=2 format=3 uid="uid://jc7te0qxdhas"]
 
 [ext_resource type="Script" path="res://src/Utils/generic_pool.gd" id="1_787rs"]
 

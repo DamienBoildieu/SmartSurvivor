@@ -13,24 +13,38 @@ signal recipe_clicked(item: RecipeIcon)
 		if is_ready:
 			update_recipe()
 
+@export var buildable_color: Color = Color.WHITE
+@export var unbuildable_color: Color = Color.DIM_GRAY
 
-var sprite: TextureRect
-var label: Label
+
+@onready var rich_label: RichTextLabel = $RichTextLabel
 var is_ready: bool = false
+
+var can_be_build: bool = false:
+	get:
+		return can_be_build
+	set(new_value):
+		can_be_build = new_value
+		if is_ready:
+			update_recipe()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite = $HBoxContainer/TextureRect
-	label = $HBoxContainer/Label
 	is_ready = true
 	update_recipe()
 
 
 func update_recipe():
-	sprite.texture = recipe.texture
+	rich_label.clear()
+	if can_be_build:
+		rich_label.push_color(buildable_color)
+	else:
+		rich_label.push_color(unbuildable_color)
+	rich_label.add_image(recipe.texture)
+	rich_label.add_text(recipe.name)
+	rich_label.pop()
 	tooltip_text = recipe.description
-	label.text = recipe.name
 
 
 func _on_gui_input(event: InputEvent):

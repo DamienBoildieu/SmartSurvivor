@@ -7,7 +7,7 @@ signal builded(building: Node)
 
 func can_be_build(inventory: Inventory, recipe: Recipe) -> bool:
 	for item in recipe.requires:
-		if inventory.items.get(item, 0) < recipe[item]:
+		if inventory.items.get(item, 0) < recipe.requires[item]:
 			return false
 	return true
 
