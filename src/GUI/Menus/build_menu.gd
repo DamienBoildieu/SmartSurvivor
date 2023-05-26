@@ -28,6 +28,7 @@ func setup_inventory(new_inventory: Inventory) -> void:
 		if inventory != null:
 			inventory.inventory_changed.disconnect(_on_inventory_changed)
 		inventory = new_inventory
+		recipe_panel.inventory = inventory
 		inventory.inventory_changed.connect(_on_inventory_changed)
 	refresh_recipes()
 
