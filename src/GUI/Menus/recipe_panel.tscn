@@ -22,6 +22,9 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
+[node name="ConstructionTimeLabel" type="Label" parent="."]
+layout_mode = 2
+
 [node name="BuildButton" type="Button" parent="."]
 layout_mode = 2
 text = "Build"

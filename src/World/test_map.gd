@@ -4,7 +4,7 @@ extends TileMap
 
 @onready var canvas: CanvasLayer = $CanvasLayer
 @onready var gui: GUI = $CanvasLayer/GUI
-@onready var player: TopDownCharacter = $PlayerCharacter
+@onready var player: TopDownCharacter = $TopDownCharacter
 @onready var pick_item_anim: PackedScene = preload("res://src/GUI/pick_item_anim.tscn")
 @onready var menus: MenuPanel= $CanvasLayer/MenuPanel
 
@@ -12,12 +12,9 @@ extends TileMap
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GlobalDropItem.spawn.connect(_on_spawn)
+	gui.setup_character(player)
 	# for generator in get_tree().get_nodes_in_group("RessourceGenerator"):
 	# 	generator.get_node("DropItem").spawn.connect(_on_spawn)
-	gui.health_bar.max_value = player.health.max_health
-	gui.energy_bar.max_value = player.energy.max_need
-	gui.food_bar.max_value = player.food.max_need
-	gui.water_bar.max_value = player.water.max_need
 	menus.visible = false
 	menus.setup_menus(player)
 
@@ -44,7 +41,7 @@ func _on_pick_anim_finished(anim: PickItemAnim) -> void:
 	GlobalItemAnimPool.add_object(anim)
 
 
-func _on_player_character_item_picked(item: PickableItem):
+func _on_player_item_picked(item: PickableItem):
 	var pick_anim : PickItemAnim = GlobalItemAnimPool.get_object()
 	pick_anim.item = item
 	pick_anim.scale = item.scale

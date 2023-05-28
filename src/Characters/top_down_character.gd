@@ -2,14 +2,14 @@ class_name TopDownCharacter
 extends CharacterBody2D
 
 
-enum State {IDLE, WALK, ATTACK, DIE}
+enum AnimationState {IDLE, WALK, ATTACK, DIE}
 
 
-const CharToAnim: Dictionary = {
-	State.IDLE: "Idle",
-	State.WALK: "Walk",
-	State.ATTACK: "Attack",
-	State.DIE: "Die"
+const AnimationEnumMap: Dictionary = {
+	AnimationState.IDLE: "Idle",
+	AnimationState.WALK: "Walk",
+	AnimationState.ATTACK: "Attack",
+	AnimationState.DIE: "Die"
 }
 
 
@@ -19,11 +19,12 @@ signal item_picked(item: Item)
 @export var max_speed: float = 150.0
 @export var inventory: Inventory
 @export var recipes: RecipeBook
+@export var state_machine: StateMachine
 
 
 var speed: float = max_speed
 var direction: Vector2 = Vector2(0., -1.)
-var state: State = State.IDLE
+var state: AnimationState = AnimationState.IDLE
 @onready
 var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.get("parameters/playback")
 @onready var health: Health = $Health
@@ -35,13 +36,15 @@ var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.
 @onready var interaction_shape = $InteractionArea/CollisionShape2D
 
 
-func _ready():
+func _ready() -> void:
 	# Not working by setting it to true in the editor
 	$Sprite2D/AttackArea/CollisionShape2D.disabled = true
 	inventory.drop_item.connect(_on_inventory_drop_item)
+	state_machine.init_state_machine({"character": self})
 
 
-func _physics_process(_delta):
+func _physics_process(delta) -> void:
+	state_machine._process_physics_state_machine(delta)
 	update_animation()
 	move_and_slide()
 
@@ -62,7 +65,7 @@ func apply_blending(next_state: String, blending_pos: Vector2) -> void:
 
 
 func update_animation() -> void:
-	var next_state: String = CharToAnim[state]
+	var next_state: String = AnimationEnumMap[state]
 	if velocity != Vector2.ZERO:
 		direction = velocity.normalized()
 		# y axis in bleding space is opposed to y axis in game space
@@ -98,9 +101,7 @@ func _on_food_lack_need():
 
 
 func _on_health_die():
-	return
-	state = State.DIE
-	velocity = Vector2.ZERO
+	state = AnimationState.DIE
 
 
 func _on_interaction_area_area_entered(area):
@@ -118,3 +119,13 @@ func _on_inventory_drop_item(item, amount):
 	else:
 		drop_area = interaction_shape.shape.size * 2
 	GlobalDropItem.drop_item(item, amount, drop_position, drop_area)
+
+
+func _on_build_place() -> void:
+	pass
+
+func place() -> void:
+	pass
+
+func cancel_place() -> void:
+	pass

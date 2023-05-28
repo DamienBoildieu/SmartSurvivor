@@ -26,18 +26,14 @@ signal build(recipe: Recipe)
 @onready var name_label: RichTextLabel = $NameLabel
 @onready var description_label: RichTextLabel = $DescriptionLabel
 @onready var require_list: RichTextLabel = $RequireLabel
+@onready var construction_time_label: Label = $ConstructionTimeLabel
 var is_ready: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	is_ready = true
 	update_recipe()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 
 func update_recipe() -> void:
@@ -45,6 +41,7 @@ func update_recipe() -> void:
 		update_name_label()
 		update_description()
 		update_require_list()
+		update_construction_time_label()
 
 
 func update_description() -> void:
@@ -75,6 +72,10 @@ func update_require_list() -> void:
 		if idx < (recipe.requires.size()-1):
 			require_list.newline()
 		idx += 1
+
+
+func update_construction_time_label() -> void:
+	construction_time_label.text = "Construction time: %.1f" % recipe.construction_time
 
 
 func _on_build_button_pressed():

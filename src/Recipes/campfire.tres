@@ -9,6 +9,7 @@
 script = ExtResource("1_xuqqj")
 name = "Campfire"
 description = "A campfire is essential to a camp"
+construction_time = 10.0
 texture = ExtResource("3_c8jc4")
 requires = {
 ExtResource("2_uqqss"): 2

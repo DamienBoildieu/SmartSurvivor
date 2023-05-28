@@ -1,4 +1,4 @@
-class_name Build
+class_name BuildSystem
 extends Node
 
 

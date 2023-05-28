@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://fa2hkjrjma62"]
+[gd_scene load_steps=10 format=3 uid="uid://dc5g5hdfi73l1"]
 
 [ext_resource type="Script" path="res://src/World/test_map.gd" id="1_3u2gp"]
 [ext_resource type="Texture2D" uid="uid://b4mneqkdjmk5l" path="res://assets/mystic_woods_free_2.1/sprites/tilesets/plains.png" id="1_21qkk"]
 [ext_resource type="PackedScene" uid="uid://0q5w8fdwktm6" path="res://src/World/tree.tscn" id="1_vwais"]
-[ext_resource type="PackedScene" uid="uid://datjx1ikwqurc" path="res://src/Characters/player_character.tscn" id="2_sewyk"]
 [ext_resource type="PackedScene" uid="uid://dssromjsg4d3x" path="res://src/GUI/gui.tscn" id="3_oquv4"]
+[ext_resource type="PackedScene" uid="uid://cl1obce8d36g3" path="res://src/Characters/top_down_character.tscn" id="7_33g52"]
 [ext_resource type="PackedScene" uid="uid://b7scv2nmdttgx" path="res://src/World/campfire.tscn" id="7_57w8h"]
 [ext_resource type="PackedScene" uid="uid://bfnv28g1c176r" path="res://src/GUI/Menus/menu_panel.tscn" id="7_fw13r"]
 
@@ -83,8 +83,6 @@ texture = ExtResource("1_21qkk")
 [sub_resource type="TileSet" id="TileSet_gjf4q"]
 sources/0 = SubResource("TileSetAtlasSource_5xtns")
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_4qeyy"]
-
 [node name="TestMap" type="TileMap"]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_gjf4q")
@@ -123,20 +121,9 @@ grow_horizontal = 2
 grow_vertical = 2
 clip_tabs = false
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("2_sewyk")]
-z_index = 1
-position = Vector2(506, 349)
-
-[node name="AnimationTree" parent="PlayerCharacter" index="3"]
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_4qeyy")
-
 [node name="Campfire" parent="." instance=ExtResource("7_57w8h")]
 position = Vector2(277, 375)
 
-[connection signal="item_picked" from="PlayerCharacter" to="." method="_on_player_character_item_picked"]
-[connection signal="health_updated" from="PlayerCharacter/Health" to="CanvasLayer/GUI" method="_on_health_health_updated"]
-[connection signal="need_updated" from="PlayerCharacter/Water" to="CanvasLayer/GUI" method="_on_water_need_updated"]
-[connection signal="need_updated" from="PlayerCharacter/Energy" to="CanvasLayer/GUI" method="_on_energy_need_updated"]
-[connection signal="need_updated" from="PlayerCharacter/Food" to="CanvasLayer/GUI" method="_on_food_need_updated"]
+[node name="TopDownCharacter" parent="." instance=ExtResource("7_33g52")]
 
-[editable path="PlayerCharacter"]
+[connection signal="item_picked" from="TopDownCharacter" to="." method="_on_player_item_picked"]
