@@ -79,4 +79,4 @@ func update_construction_time_label() -> void:
 
 
 func _on_build_button_pressed():
-	pass # Replace with function body.
+	build.emit(recipe) # Replace with function body.

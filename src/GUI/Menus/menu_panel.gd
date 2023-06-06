@@ -17,7 +17,7 @@ func _ready():
 
 func setup_menus(player: TopDownCharacter) -> void:
 	inventory_menu.setup_inventory(player.inventory)
-	build_menu.setup_menu(player.recipes, player.inventory)
+	build_menu.setup_menu(player)
 
 
 func _input(event):

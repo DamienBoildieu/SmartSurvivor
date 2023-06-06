@@ -11,9 +11,10 @@ var inventory: Inventory
 var recipes: RecipeBook
 
 
-func setup_menu(new_recipes: RecipeBook, new_inventory: Inventory) -> void:
-	setup_recipes(new_recipes)
-	setup_inventory(new_inventory)
+func setup_menu(player: TopDownCharacter) -> void:
+	setup_recipes(player.recipes)
+	setup_inventory(player.inventory)
+	recipe_panel.build.connect(player._on_build_place)
 
 
 func setup_recipes(new_recipes: RecipeBook) -> void:

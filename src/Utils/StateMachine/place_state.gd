@@ -2,6 +2,12 @@ class_name PlaceState
 extends CharacterState
 
 
+func _enter_state(arguments := {}) -> void:
+	var recipe = arguments["recipe"] as Recipe
+	var sprite := character.place_area.get_node("Sprite2D") as Sprite2D
+	sprite.texture = recipe.texture
+
+
 func _process_physics_state(_delta: float) -> void:
 	var direction_input: float = Input.get_axis("move_left", "move_right")
 	if direction_input:

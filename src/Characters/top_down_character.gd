@@ -34,11 +34,10 @@ var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.
 @onready var animation_tree = $AnimationTree
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var interaction_shape = $InteractionArea/CollisionShape2D
+@onready var place_area = $Sprite2D/PlaceArea
 
 
 func _ready() -> void:
-	# Not working by setting it to true in the editor
-	$Sprite2D/AttackArea/CollisionShape2D.disabled = true
 	inventory.drop_item.connect(_on_inventory_drop_item)
 	state_machine.init_state_machine({"character": self})
 
@@ -121,11 +120,11 @@ func _on_inventory_drop_item(item, amount):
 	GlobalDropItem.drop_item(item, amount, drop_position, drop_area)
 
 
-func _on_build_place() -> void:
-	pass
+func _on_build_place(recipe: Recipe) -> void:
+	state_machine.travel(state_machine.states[0], {"recipe": recipe})
 
 func place() -> void:
-	pass
+	state_machine.travel(state_machine.states[1])
 
 func cancel_place() -> void:
-	pass
+	state_machine.travel(state_machine.states[1])

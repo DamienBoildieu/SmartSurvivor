@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cl1obce8d36g3"]
+[gd_scene load_steps=64 format=3 uid="uid://cl1obce8d36g3"]
 
 [ext_resource type="Script" path="res://src/Characters/top_down_character.gd" id="1_30mdk"]
 [ext_resource type="Texture2D" uid="uid://dwy37uubi1v4k" path="res://assets/mystic_woods_free_2.1/sprites/characters/player.png" id="1_o6nid"]
@@ -27,6 +27,8 @@ states = Array[Resource("res://src/Utils/StateMachine/state.gd")]([SubResource("
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t8nbl"]
 size = Vector2(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_487mj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlcnp"]
 size = Vector2(11, 6)
@@ -755,7 +757,6 @@ metadata/_edit_group_ = true
 texture = ExtResource("1_o6nid")
 hframes = 6
 vframes = 10
-frame = 9
 
 [node name="AttackArea" type="Area2D" parent="Sprite2D"]
 
@@ -765,6 +766,14 @@ shape = SubResource("RectangleShape2D_t8nbl")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sprite2D/AttackArea"]
 stream = ExtResource("3_ngrnj")
+
+[node name="PlaceArea" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/PlaceArea"]
+shape = SubResource("RectangleShape2D_487mj")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/PlaceArea"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 14)
