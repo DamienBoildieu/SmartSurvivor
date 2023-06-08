@@ -40,12 +40,22 @@ var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.
 func _ready() -> void:
 	inventory.drop_item.connect(_on_inventory_drop_item)
 	state_machine.init_state_machine({"character": self})
+	state_machine.states[0].cancel.connect(cancel_place)
+	state_machine.states[0].build.connect(build)
+
+
+func _process(delta):
+	state_machine._process_state_machine(delta)
 
 
 func _physics_process(delta) -> void:
 	state_machine._process_physics_state_machine(delta)
 	update_animation()
 	move_and_slide()
+
+
+func _input(event):
+	state_machine._state_machine_inputs(event)
 
 
 func set_blending_position(param: String, blending_pos: Vector2) -> void:
@@ -123,8 +133,10 @@ func _on_inventory_drop_item(item, amount):
 func _on_build_place(recipe: Recipe) -> void:
 	state_machine.travel(state_machine.states[0], {"recipe": recipe})
 
-func place() -> void:
+
+func build(building: Node) -> void:
 	state_machine.travel(state_machine.states[1])
+
 
 func cancel_place() -> void:
 	state_machine.travel(state_machine.states[1])
