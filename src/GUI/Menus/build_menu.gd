@@ -41,7 +41,7 @@ func refresh_recipes() -> void:
 	for recipe in recipes.recipes:
 		var icon := recipe_icon_template.instantiate() as RecipeIcon
 		icon.recipe = recipe
-		icon.can_be_build = inventory == null or GlobalBuild.can_be_build(inventory, recipe)
+		icon.can_be_build = inventory == null or inventory.has_all(recipe.requires)
 		icon.recipe_clicked.connect(_on_recipe_clicked)
 		grid.add_child(icon)
 

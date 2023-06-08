@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 
 GlobalItemAnimPool="*res://src/Utils/item_anim_pool.tscn"
 GlobalDropItem="*res://src/Utils/drop_item.tscn"
-GlobalBuild="*res://src/Utils/build_system.gd"
 
 [display]
 

@@ -13,6 +13,7 @@ var name_to_idx: Dictionary = {}
 func _ready():
 	name_to_idx["inventory"] = get_tab_idx_from_control(inventory_menu)
 	name_to_idx["build"] = get_tab_idx_from_control(build_menu)
+	build_menu.recipe_panel.build.connect(_on_build)
 
 
 func setup_menus(player: TopDownCharacter) -> void:
@@ -33,3 +34,7 @@ func _input(event):
 			if not self.visible:
 				self.visible = true
 			current_tab = name_to_idx[menu_name]
+
+
+func _on_build(_build) -> void:
+	self.visible = false

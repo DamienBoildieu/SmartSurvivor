@@ -31,17 +31,17 @@ var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.
 @onready var energy: Need = $Energy
 @onready var water: Need = $Water
 @onready var food: Need = $Food
-@onready var animation_tree = $AnimationTree
+@onready var animation_tree: AnimationTree = $AnimationTree
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var interaction_shape = $InteractionArea/CollisionShape2D
-@onready var place_area = $Sprite2D/PlaceArea
+@onready var interaction_shape: CollisionShape2D = $InteractionArea/CollisionShape2D
+@onready var place_area: PlaceArea = $PlaceArea
 
 
 func _ready() -> void:
 	inventory.drop_item.connect(_on_inventory_drop_item)
+	place_area.build.connect(build)
+	place_area.cancel.connect(cancel_place)
 	state_machine.init_state_machine({"character": self})
-	state_machine.states[0].cancel.connect(cancel_place)
-	state_machine.states[0].build.connect(build)
 
 
 func _process(delta):
@@ -134,8 +134,12 @@ func _on_build_place(recipe: Recipe) -> void:
 	state_machine.travel(state_machine.states[0], {"recipe": recipe})
 
 
-func build(building: Node) -> void:
-	state_machine.travel(state_machine.states[1])
+func build(recipe: Recipe) -> void:
+	if inventory.has_all(recipe.requires):
+		inventory.remove_items(recipe.requires)
+		var instantiated = recipe.building.instantiate() as Node2D
+		instantiated.position = place_area.global_position
+		state_machine.travel(state_machine.states[1])
 
 
 func cancel_place() -> void:

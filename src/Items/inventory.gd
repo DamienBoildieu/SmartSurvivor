@@ -30,3 +30,18 @@ func drop(item, amount):
 
 func get_amount(item) -> int:
 	return items.get(item, 0)
+
+
+func has_all(requirements: Dictionary) -> bool:
+	for item in requirements:
+		if items.get(item, 0) < requirements[item]:
+			return false
+	return true
+
+
+func remove_items(to_remove: Dictionary) -> void:
+	for item in to_remove:
+		items[item] -= to_remove[item]
+		if items[item] < 0:
+			items[item] = 0
+	inventory_changed.emit()
