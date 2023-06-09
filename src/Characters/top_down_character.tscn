@@ -26,9 +26,6 @@ script = ExtResource("2_0vec2")
 initial_state = SubResource("Resource_yf256")
 states = Array[Resource("res://src/Utils/StateMachine/state.gd")]([SubResource("Resource_qsj27")])
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8nbl"]
-size = Vector2(0, 0)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlcnp"]
 size = Vector2(11, 6)
 
@@ -61,7 +58,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/AttackArea/CollisionShape2D:disabled")
+tracks/2/path = NodePath("AttackArea/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -73,7 +70,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/AttackArea/CollisionShape2D:position")
+tracks/3/path = NodePath("AttackArea/CollisionShape2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -101,7 +98,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/AttackArea/CollisionShape2D:position")
+tracks/1/path = NodePath("AttackArea/CollisionShape2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -113,7 +110,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/AttackArea/CollisionShape2D:shape:size")
+tracks/2/path = NodePath("AttackArea/CollisionShape2D:shape:size")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -125,7 +122,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/AttackArea/CollisionShape2D:disabled")
+tracks/3/path = NodePath("AttackArea/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -137,7 +134,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D/AttackArea/AudioStreamPlayer2D:playing")
+tracks/4/path = NodePath("AttackArea/AudioStreamPlayer2D:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -177,7 +174,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/AttackArea/CollisionShape2D:disabled")
+tracks/2/path = NodePath("AttackArea/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -189,7 +186,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/AttackArea/CollisionShape2D:shape:size")
+tracks/3/path = NodePath("AttackArea/CollisionShape2D:shape:size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -201,7 +198,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D/AttackArea/CollisionShape2D:position")
+tracks/4/path = NodePath("AttackArea/CollisionShape2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -213,7 +210,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2D/AttackArea/AudioStreamPlayer2D:playing")
+tracks/5/path = NodePath("AttackArea/AudioStreamPlayer2D:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -253,7 +250,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/AttackArea/CollisionShape2D:disabled")
+tracks/2/path = NodePath("AttackArea/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -265,7 +262,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/AttackArea/CollisionShape2D:position")
+tracks/3/path = NodePath("AttackArea/CollisionShape2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -277,7 +274,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D/AttackArea/CollisionShape2D:shape:size")
+tracks/4/path = NodePath("AttackArea/CollisionShape2D:shape:size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -289,7 +286,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2D/AttackArea/AudioStreamPlayer2D:playing")
+tracks/5/path = NodePath("AttackArea/AudioStreamPlayer2D:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -317,7 +314,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/AttackArea/CollisionShape2D:disabled")
+tracks/1/path = NodePath("AttackArea/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -329,7 +326,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/AttackArea/CollisionShape2D:shape:size")
+tracks/2/path = NodePath("AttackArea/CollisionShape2D:shape:size")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -341,7 +338,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/AttackArea/CollisionShape2D:position")
+tracks/3/path = NodePath("AttackArea/CollisionShape2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -353,7 +350,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D/AttackArea/AudioStreamPlayer2D:playing")
+tracks/4/path = NodePath("AttackArea/AudioStreamPlayer2D:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -744,6 +741,9 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8aik2"]
 size = Vector2(11, 6)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8nbl"]
+size = Vector2(0, 0)
+
 [node name="TopDownCharacter" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_30mdk")
@@ -756,15 +756,6 @@ metadata/_edit_group_ = true
 texture = ExtResource("1_o6nid")
 hframes = 6
 vframes = 10
-
-[node name="AttackArea" type="Area2D" parent="Sprite2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/AttackArea"]
-position = Vector2(-1, 4)
-shape = SubResource("RectangleShape2D_t8nbl")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sprite2D/AttackArea"]
-stream = ExtResource("3_ngrnj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 14)
@@ -804,10 +795,19 @@ shape = SubResource("RectangleShape2D_8aik2")
 
 [node name="PlaceArea" parent="." instance=ExtResource("9_88wm3")]
 
-[connection signal="area_entered" from="Sprite2D/AttackArea" to="." method="_on_attack_area_area_entered"]
-[connection signal="body_entered" from="Sprite2D/AttackArea" to="." method="_on_attack_area_body_entered"]
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-1, 4)
+shape = SubResource("RectangleShape2D_t8nbl")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AttackArea"]
+stream = ExtResource("3_ngrnj")
+
 [connection signal="die" from="Health" to="." method="_on_health_die"]
 [connection signal="lack_need" from="Water" to="." method="_on_water_lack_need"]
 [connection signal="lack_need" from="Energy" to="." method="_on_energy_lack_need"]
 [connection signal="lack_need" from="Food" to="." method="_on_food_lack_need"]
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

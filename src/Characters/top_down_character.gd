@@ -139,6 +139,8 @@ func build(recipe: Recipe) -> void:
 		inventory.remove_items(recipe.requires)
 		var instantiated = recipe.building.instantiate() as Node2D
 		instantiated.position = place_area.global_position
+		# temporary TODO: Change when a level manager will be added
+		owner.call_deferred("add_child", instantiated)
 		state_machine.travel(state_machine.states[1])
 
 

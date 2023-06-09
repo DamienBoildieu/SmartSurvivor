@@ -4,6 +4,9 @@ extends CharacterState
 
 func _enter_state(arguments := {}) -> void:
 	character.place_area.update(arguments["recipe"] as Recipe)
+	var offset := character.interaction_shape.position
+	offset.y -= character.place_area.collision_shape.shape.size.y
+	character.place_area.position = offset
 	character.place_area.activate()
 
 
@@ -13,6 +16,8 @@ func _exit_state() -> Dictionary:
 
 
 func _process_physics_state(_delta: float) -> void:
+	if Input.is_key_pressed(KEY_CTRL):
+		return
 	var direction_input: float = Input.get_axis("move_left", "move_right")
 	if direction_input:
 		character.velocity.x = direction_input
@@ -33,7 +38,23 @@ func _process_physics_state(_delta: float) -> void:
 
 
 func _state_inputs(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("move_build_up"):
+		var offset := character.interaction_shape.position
+		offset.y -= character.place_area.collision_shape.shape.size.y
+		character.place_area.position = offset
+	elif event.is_action_pressed("move_build_down"):
+		var offset := character.interaction_shape.position
+		offset.y += character.place_area.collision_shape.shape.size.y
+		character.place_area.position = offset
+	elif event.is_action_pressed("move_build_left"):
+		var offset := character.interaction_shape.position
+		offset.x -= character.place_area.collision_shape.shape.size.x
+		character.place_area.position = offset
+	elif event.is_action_pressed("move_build_right"):
+		var offset := character.interaction_shape.position
+		offset.x += character.place_area.collision_shape.shape.size.x
+		character.place_area.position = offset
+	elif event.is_action_pressed("interact"):
 		character.place_area.build_scene()
-	elif event.is_action("cancel"):
+	elif event.is_action_pressed("cancel"):
 		character.cancel_build.emit()
