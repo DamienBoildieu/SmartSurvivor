@@ -12,6 +12,7 @@ signal cancel()
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var sprite: Sprite2D = $Sprite2D
 var recipe: Recipe
+var has_conflict := false
 
 
 func update(new_recipe: Recipe) -> void:
@@ -32,7 +33,8 @@ func deactivate() -> void:
 
 
 func build_scene() -> void:
-	build.emit(recipe)
+	if not has_conflict:
+		build.emit(recipe)
 
 
 func cancel_build() -> void:
@@ -58,4 +60,5 @@ func _on_body_exited(_body: Node2D) -> void:
 func check_conflicts() -> void:
 	var nb_overlap := get_overlapping_areas().size()
 	nb_overlap += get_overlapping_bodies().size()
-	sprite.modulate = valid_modulate if nb_overlap == 0 else invalid_modulate
+	has_conflict = nb_overlap != 0
+	sprite.modulate = invalid_modulate if has_conflict else valid_modulate
