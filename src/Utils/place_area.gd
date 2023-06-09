@@ -11,6 +11,8 @@ signal cancel()
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var build_player: AudioStreamPlayer2D = $BuildPlayer
+@onready var error_player: AudioStreamPlayer = $ErrorPlayer
 var recipe: Recipe
 var has_conflict := false
 
@@ -34,8 +36,10 @@ func deactivate() -> void:
 
 func build_scene() -> void:
 	if not has_conflict:
+		build_player.play()
 		build.emit(recipe)
-
+	else:
+		error_player.play()
 
 func cancel_build() -> void:
 	cancel.emit()

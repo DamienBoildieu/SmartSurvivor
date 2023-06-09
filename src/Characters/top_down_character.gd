@@ -35,6 +35,7 @@ var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var interaction_shape: CollisionShape2D = $InteractionArea/CollisionShape2D
 @onready var place_area: PlaceArea = $PlaceArea
+@onready var attack_audio: AudioStreamPlayer2D = $AttackArea/AudioStreamPlayer2D
 
 
 func _ready() -> void:
@@ -87,6 +88,7 @@ func update_animation() -> void:
 func perform_attack(target: Node) -> void:
 	if target.has_node("Health"):
 		target.get_node("Health").take_damage(1)
+		attack_audio.play()
 
 
 func _on_attack_area_area_entered(area:Area2D):
