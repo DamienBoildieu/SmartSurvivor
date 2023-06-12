@@ -18,14 +18,11 @@ signal anim_finished(anim: PickItemAnim)
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var is_ready: bool = false
-var sprite: TextureRect
-var label: Label
-var rich_text_label: RichTextLabel
+@onready var sprite: TextureRect = $DisplayContainer/HBoxContainer/TextureRect
+@onready var label: Label = $DisplayContainer/HBoxContainer/Label
 
 
 func _ready():
-	sprite = $DisplayContainer/HBoxContainer/TextureRect
-	label = $DisplayContainer/HBoxContainer/Label
 	is_ready = true
 	update_item()
 

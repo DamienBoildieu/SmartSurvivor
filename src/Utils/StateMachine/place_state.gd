@@ -57,4 +57,4 @@ func _state_inputs(event: InputEvent) -> void:
 	elif event.is_action_pressed("interact"):
 		character.place_area.build_scene()
 	elif event.is_action_pressed("cancel"):
-		character.cancel_build.emit()
+		character.cancel()

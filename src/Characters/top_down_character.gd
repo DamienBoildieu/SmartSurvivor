@@ -146,5 +146,9 @@ func build(recipe: Recipe) -> void:
 		state_machine.travel(state_machine.states[1])
 
 
+func stop_build() -> void:
+	state_machine.travel(state_machine.states[2])
+
+
 func cancel_place() -> void:
-	state_machine.travel(state_machine.states[1])
+	state_machine.travel(state_machine.states[2])

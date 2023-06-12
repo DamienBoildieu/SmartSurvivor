@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp0o31yhvxjnn"]
+
+[ext_resource type="Script" path="res://src/World/building_site.gd" id="1_e7ijw"]
+[ext_resource type="PackedScene" uid="uid://brdbo8vtrmx5b" path="res://src/GUI/animated_bar.tscn" id="2_h68n2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emhlc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rbjmi"]
+radius = 20.0
+
+[node name="BuildingSite" type="StaticBody2D"]
+script = ExtResource("1_e7ijw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_emhlc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_rbjmi")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="DisplayContainer" type="Node2D" parent="."]
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="DisplayContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedBar" parent="DisplayContainer/AspectRatioContainer" instance=ExtResource("2_h68n2")]
+layout_mode = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

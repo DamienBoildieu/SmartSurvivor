@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cl1obce8d36g3"]
+[gd_scene load_steps=66 format=3 uid="uid://cl1obce8d36g3"]
 
 [ext_resource type="Script" path="res://src/Characters/top_down_character.gd" id="1_30mdk"]
 [ext_resource type="Texture2D" uid="uid://dwy37uubi1v4k" path="res://assets/mystic_woods_free_2.1/sprites/characters/player.png" id="1_o6nid"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://src/Utils/StateMachine/place_state.gd" id="4_jgh2m"]
 [ext_resource type="PackedScene" uid="uid://b2j8pa2vqj4vh" path="res://src/Utils/health.tscn" id="4_k0gqj"]
 [ext_resource type="PackedScene" uid="uid://bcxqiqy23c4vc" path="res://src/Utils/need.tscn" id="5_3pnnt"]
+[ext_resource type="Script" path="res://src/Utils/StateMachine/build_state.gd" id="7_vsk8l"]
 [ext_resource type="PackedScene" uid="uid://bsapwleuvhn8a" path="res://src/Utils/place_area.tscn" id="9_88wm3"]
 
 [sub_resource type="Resource" id="Resource_hvwx6"]
@@ -21,10 +22,13 @@ script = ExtResource("2_8sryk")
 [sub_resource type="Resource" id="Resource_qsj27"]
 script = ExtResource("4_jgh2m")
 
+[sub_resource type="Resource" id="Resource_x6cd6"]
+script = ExtResource("7_vsk8l")
+
 [sub_resource type="Resource" id="Resource_ihej8"]
 script = ExtResource("2_0vec2")
 initial_state = SubResource("Resource_yf256")
-states = Array[Resource("res://src/Utils/StateMachine/state.gd")]([SubResource("Resource_qsj27")])
+states = Array[Resource("res://src/Utils/StateMachine/state.gd")]([SubResource("Resource_qsj27"), SubResource("Resource_x6cd6")])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlcnp"]
 size = Vector2(11, 6)

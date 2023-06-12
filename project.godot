@@ -15,6 +15,10 @@ run/main_scene="res://src/World/test_map.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://src/Utils/default_bus_layout.tres"
+
 [autoload]
 
 GlobalItemAnimPool="*res://src/Utils/item_anim_pool.tscn"
