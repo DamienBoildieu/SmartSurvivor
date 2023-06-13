@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp0o31yhvxjnn"]
+[gd_scene load_steps=6 format=3 uid="uid://cp0o31yhvxjnn"]
 
 [ext_resource type="Script" path="res://src/World/building_site.gd" id="1_e7ijw"]
 [ext_resource type="PackedScene" uid="uid://brdbo8vtrmx5b" path="res://src/GUI/animated_bar.tscn" id="2_h68n2"]
+[ext_resource type="AudioStream" uid="uid://bu3gbv7ov2qxs" path="res://assets/Darkworld Audio - Survival Effects [Free]/Tools/HammerNail1.wav" id="3_rbxv0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emhlc"]
 
@@ -21,8 +22,6 @@ shape = SubResource("RectangleShape2D_emhlc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_rbjmi")
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="DisplayContainer" type="Node2D" parent="."]
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="DisplayContainer"]
@@ -33,5 +32,5 @@ offset_bottom = 40.0
 layout_mode = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+stream = ExtResource("3_rbxv0")
+bus = &"Sound"
