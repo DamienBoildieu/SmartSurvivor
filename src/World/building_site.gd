@@ -38,9 +38,7 @@ func _process(delta):
 	if not is_finished and nb_workers > 0:
 		update_work(cumulated_time + nb_workers * delta)
 		if cumulated_time > recipe.construction_time:
-			audio.stop()
-			is_finished = true
-			building_complete.emit()
+			complete_build()
 
 
 func add_worker(new_workers: int) -> void:
@@ -80,3 +78,9 @@ func update_work(value: float) -> void:
 
 func work_in_progress() -> bool:
 	return not is_finished and nb_workers > 0
+
+
+func complete_build() -> void:
+	audio.stop()
+	is_finished = true
+	building_complete.emit(self)

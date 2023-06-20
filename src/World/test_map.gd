@@ -48,3 +48,16 @@ func _on_player_item_picked(item: PickableItem):
 	call_deferred("play_pick_anim", pick_anim)
 	remove_child(item)
 	GlobalDropItem.add_object(item)
+	
+
+func add_build_site(building_site: BuildingSite) -> void:
+	add_child(building_site)
+	building_site.building_complete.connect(_on_building_complete)
+
+
+func _on_building_complete(building_site: BuildingSite) -> void:
+	var instantiated_building := building_site.recipe.building.instantiate()
+	instantiated_building.position = building_site.global_position
+	remove_child(building_site)
+	building_site.queue_free()
+	add_child(instantiated_building)

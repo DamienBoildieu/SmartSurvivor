@@ -17,6 +17,7 @@ signal item_picked(item: Item)
 
 
 @export var max_speed: float = 150.0
+@export var work_force: int = 1
 @export var inventory: Inventory
 @export var recipes: RecipeBook
 @export var state_machine: StateMachine
@@ -25,6 +26,7 @@ signal item_picked(item: Item)
 var speed: float = max_speed
 var direction: Vector2 = Vector2(0., -1.)
 var state: AnimationState = AnimationState.IDLE
+const building_site: PackedScene = preload("res://src/World/building_site.tscn")
 @onready
 var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.get("parameters/playback")
 @onready var health: Health = $Health
@@ -139,10 +141,10 @@ func _on_build_place(recipe: Recipe) -> void:
 func build(recipe: Recipe) -> void:
 	if inventory.has_all(recipe.requires):
 		inventory.remove_items(recipe.requires)
-		var instantiated = recipe.building.instantiate() as Node2D
-		instantiated.position = place_area.global_position
-		# temporary TODO: Change when a level manager will be added
-		owner.call_deferred("add_child", instantiated)
+		var instantiated_bs := building_site.instantiate() as BuildingSite
+		instantiated_bs.recipe = recipe
+		instantiated_bs.positionv = place_area.global_position
+		owner.add_building_site(instantiated_bs)
 		state_machine.travel(state_machine.states[1])
 
 
