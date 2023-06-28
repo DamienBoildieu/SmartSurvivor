@@ -143,9 +143,9 @@ func build(recipe: Recipe) -> void:
 		inventory.remove_items(recipe.requires)
 		var instantiated_bs := building_site.instantiate() as BuildingSite
 		instantiated_bs.recipe = recipe
-		instantiated_bs.positionv = place_area.global_position
+		instantiated_bs.position = place_area.global_position
 		owner.add_building_site(instantiated_bs)
-		state_machine.travel(state_machine.states[1])
+		state_machine.travel(state_machine.states[1], {"building_site": instantiated_bs})
 
 
 func stop_build() -> void:

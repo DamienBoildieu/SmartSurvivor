@@ -50,7 +50,7 @@ func _on_player_item_picked(item: PickableItem):
 	GlobalDropItem.add_object(item)
 	
 
-func add_build_site(building_site: BuildingSite) -> void:
+func add_building_site(building_site: BuildingSite) -> void:
 	add_child(building_site)
 	building_site.building_complete.connect(_on_building_complete)
 

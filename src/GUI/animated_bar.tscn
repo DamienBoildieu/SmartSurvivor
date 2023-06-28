@@ -9,4 +9,5 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture_under = ExtResource("1_7agu0")
 texture_progress = ExtResource("2_vxp68")
+texture_progress_offset = Vector2(40, 40)
 script = ExtResource("1_j058k")

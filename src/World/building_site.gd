@@ -14,7 +14,7 @@ var recipe: Recipe:
 	set(new_recipe):
 		recipe = new_recipe
 		if is_ready:
-			update()
+			building_site_update()
 
 
 var cumulated_time: float = 0.
@@ -24,14 +24,13 @@ var is_finished: bool = false
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var interaction_shape: CollisionShape2D = $InteractionArea/CollisionShape2D
-@onready var display_container: Node2D = $DisplayContainer
 @onready var animated_bar: AnimatedBar = $AnimatedBar
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 
 func _ready() -> void:
 	is_ready = true
-	update()
+	building_site_update()
 
 
 func _process(delta):
@@ -59,13 +58,15 @@ func reset_work() -> void:
 	update_work(0)
 
 
-func update() -> void:
+func building_site_update() -> void:
 	sprite.texture = recipe.texture
 	collision.shape.size = recipe.texture.get_size()
 	interaction_shape.shape.radius = collision.shape.size.x
-	var offset := collision.position
+	var offset: Vector2 = collision.position - collision.shape.size
 	offset.y -= collision.shape.size.y
-	display_container.position = offset
+	#display_container.position = offset
+	animated_bar.position = offset
+	animated_bar.size = collision.shape.size
 	animated_bar.max_value = recipe.construction_time
 	reset_work()
 	is_finished = false
@@ -73,7 +74,7 @@ func update() -> void:
 
 func update_work(value: float) -> void:
 	cumulated_time = value
-	animated_bar.animate(value)
+	animated_bar.value = value
 
 
 func work_in_progress() -> bool:

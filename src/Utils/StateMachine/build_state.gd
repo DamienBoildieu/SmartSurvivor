@@ -14,7 +14,6 @@ var building_site: BuildingSite:
 
 func _enter_state(arguments := {}) -> void:
 	building_site = arguments["building_site"] as BuildingSite
-	building_site.building_complete.connect(_on_building_complete)
 	building_site.add_worker(character.work_force)
 	character.state = TopDownCharacter.AnimationState.IDLE
 
@@ -24,11 +23,11 @@ func _state_inputs(event: InputEvent) -> void:
 		stop_build()
 
 
-func _on_building_complete(building_site: BuildingSite) -> void:
+func _on_building_complete(_building_site: BuildingSite) -> void:
 	stop_build()
 
 
 func stop_build() -> void:
-	building_site.building_complete.disconnect(stop_build)
+	building_site.building_complete.disconnect(_on_building_complete)
 	building_site.remove_workers(character.work_force)
 	character.stop_build()

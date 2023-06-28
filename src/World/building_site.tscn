@@ -24,13 +24,10 @@ shape = SubResource("CircleShape2D_rbjmi")
 
 [node name="DisplayContainer" type="Node2D" parent="."]
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="DisplayContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="AnimatedBar" parent="DisplayContainer/AspectRatioContainer" instance=ExtResource("2_h68n2")]
-layout_mode = 2
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_rbxv0")
 bus = &"Sound"
+
+[node name="AnimatedBar" parent="." instance=ExtResource("2_h68n2")]
+offset_right = 1766.0
+offset_bottom = 332.0

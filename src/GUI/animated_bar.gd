@@ -8,5 +8,6 @@ extends TextureProgressBar
 @export var tween_ease: Tween.EaseType = Tween.EASE_IN_OUT
 
 
+#TODO: Need rework, building_site progress animation doesn't work if animate is used
 func animate(end):
 	get_tree().create_tween().tween_property(self, "value", end, tween_duration).set_trans(tween_trans).set_ease(tween_ease)
