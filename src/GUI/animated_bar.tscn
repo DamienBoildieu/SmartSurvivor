@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://pwuqh0f13w5y" path="res://assets/GUI/food_fill.png" id="2_vxp68"]
 
 [node name="AnimatedBar" type="TextureProgressBar"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1766.0
+offset_bottom = 332.0
 texture_under = ExtResource("1_7agu0")
 texture_progress = ExtResource("2_vxp68")
 texture_progress_offset = Vector2(40, 40)

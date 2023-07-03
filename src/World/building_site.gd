@@ -24,8 +24,9 @@ var is_finished: bool = false
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var interaction_shape: CollisionShape2D = $InteractionArea/CollisionShape2D
-@onready var animated_bar: AnimatedBar = $AnimatedBar
+@onready var animated_bar: AnimatedBar = $DisplayContainer/AnimatedBar
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var display_container: Node2D = $DisplayContainer
 
 
 func _ready() -> void:
@@ -62,11 +63,11 @@ func building_site_update() -> void:
 	sprite.texture = recipe.texture
 	collision.shape.size = recipe.texture.get_size()
 	interaction_shape.shape.radius = collision.shape.size.x
-	var offset: Vector2 = collision.position - collision.shape.size
-	offset.y -= collision.shape.size.y
-	#display_container.position = offset
-	animated_bar.position = offset
-	animated_bar.size = collision.shape.size
+	var offset: Vector2 = collision.position - collision.shape.size/2
+	offset.y -= collision.shape.size.y/2
+	display_container.position = offset
+	var bar_scale: float = collision.shape.size.x/animated_bar.size.x
+	display_container.scale = Vector2(bar_scale, bar_scale)
 	animated_bar.max_value = recipe.construction_time
 	reset_work()
 	is_finished = false
