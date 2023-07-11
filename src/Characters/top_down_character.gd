@@ -35,7 +35,7 @@ var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.
 @onready var food: Need = $Food
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var interaction_shape: CollisionShape2D = $InteractionArea/CollisionShape2D
+@onready var body_shape: CollisionShape2D = $BodyArea/CollisionShape2D
 @onready var place_area: PlaceArea = $PlaceArea
 @onready var attack_audio: AudioStreamPlayer2D = $AttackArea/AudioStreamPlayer2D
 
@@ -117,20 +117,14 @@ func _on_health_die():
 	state = AnimationState.DIE
 
 
-func _on_interaction_area_area_entered(area):
-	if area is PickableItem:
-		inventory.add_item(area.item, area.quantity)
-		item_picked.emit(area)
-
-
 func _on_inventory_drop_item(item, amount):
-	var drop_position: Vector2 = interaction_shape.global_position
+	var drop_position: Vector2 = body_shape.global_position
 	var drop_area := Vector2.ZERO
 	if velocity != Vector2.ZERO:
 		var curr_direction = velocity.normalized()
-		drop_position -= curr_direction * interaction_shape.shape.size * 2
+		drop_position -= curr_direction * body_shape.shape.size * 2
 	else:
-		drop_area = interaction_shape.shape.size * 2
+		drop_area = body_shape.shape.size * 2
 	GlobalDropItem.drop_item(item, amount, drop_position, drop_area)
 
 
@@ -154,3 +148,9 @@ func stop_build() -> void:
 
 func cancel_place() -> void:
 	state_machine.travel(state_machine.states[2])
+
+
+func _on_body_area_area_entered(area):
+	if area is PickableItem:
+		inventory.add_item(area.item, area.quantity)
+		item_picked.emit(area)

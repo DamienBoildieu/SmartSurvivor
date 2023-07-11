@@ -23,7 +23,6 @@ var nb_workers: int = 0
 var is_finished: bool = false
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
-@onready var interaction_shape: CollisionShape2D = $InteractionArea/CollisionShape2D
 @onready var animated_bar: AnimatedBar = $DisplayContainer/AnimatedBar
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var display_container: Node2D = $DisplayContainer
@@ -62,7 +61,6 @@ func reset_work() -> void:
 func building_site_update() -> void:
 	sprite.texture = recipe.texture
 	collision.shape.size = recipe.texture.get_size()
-	interaction_shape.shape.radius = collision.shape.size.x
 	var offset: Vector2 = collision.position - collision.shape.size/2
 	offset.y -= collision.shape.size.y/2
 	display_container.position = offset

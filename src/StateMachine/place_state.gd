@@ -4,7 +4,7 @@ extends CharacterState
 
 func _enter_state(arguments := {}) -> void:
 	character.place_area.update(arguments["recipe"] as Recipe)
-	var offset := character.interaction_shape.position
+	var offset := character.body_shape.position
 	offset.y -= character.place_area.collision_shape.shape.size.y
 	character.place_area.position = offset
 	character.place_area.activate()
@@ -39,19 +39,19 @@ func _process_physics_state(_delta: float) -> void:
 
 func _state_inputs(event: InputEvent) -> void:
 	if event.is_action_pressed("move_build_up"):
-		var offset := character.interaction_shape.position
+		var offset := character.body_shape.position
 		offset.y -= character.place_area.collision_shape.shape.size.y
 		character.place_area.position = offset
 	elif event.is_action_pressed("move_build_down"):
-		var offset := character.interaction_shape.position
+		var offset := character.body_shape.position
 		offset.y += character.place_area.collision_shape.shape.size.y
 		character.place_area.position = offset
 	elif event.is_action_pressed("move_build_left"):
-		var offset := character.interaction_shape.position
+		var offset := character.body_shape.position
 		offset.x -= character.place_area.collision_shape.shape.size.x
 		character.place_area.position = offset
 	elif event.is_action_pressed("move_build_right"):
-		var offset := character.interaction_shape.position
+		var offset := character.body_shape.position
 		offset.x += character.place_area.collision_shape.shape.size.x
 		character.place_area.position = offset
 	elif event.is_action_pressed("interact"):

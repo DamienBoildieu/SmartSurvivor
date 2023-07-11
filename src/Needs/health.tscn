@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2j8pa2vqj4vh"]
 
-[ext_resource type="Script" path="res://src/Utils/health.gd" id="1_4ffxk"]
+[ext_resource type="Script" path="res://src/Needs/health.gd" id="1_4ffxk"]
 [ext_resource type="PackedScene" uid="uid://bp2ho8xs7k8t1" path="res://src/Utils/damage_timer.tscn" id="2_pby6r"]
 
 [node name="Health" type="Node"]

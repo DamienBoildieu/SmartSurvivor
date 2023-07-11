@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dc5g5hdfi73l1"]
+[gd_scene load_steps=9 format=3 uid="uid://dc5g5hdfi73l1"]
 
 [ext_resource type="Script" path="res://src/World/test_map.gd" id="1_3u2gp"]
 [ext_resource type="Texture2D" uid="uid://b4mneqkdjmk5l" path="res://assets/mystic_woods_free_2.1/sprites/tilesets/plains.png" id="1_21qkk"]
 [ext_resource type="PackedScene" uid="uid://0q5w8fdwktm6" path="res://src/World/tree.tscn" id="1_vwais"]
 [ext_resource type="PackedScene" uid="uid://dssromjsg4d3x" path="res://src/GUI/gui.tscn" id="3_oquv4"]
 [ext_resource type="PackedScene" uid="uid://cl1obce8d36g3" path="res://src/Characters/top_down_character.tscn" id="7_33g52"]
-[ext_resource type="PackedScene" uid="uid://b7scv2nmdttgx" path="res://src/World/campfire.tscn" id="7_57w8h"]
 [ext_resource type="PackedScene" uid="uid://bfnv28g1c176r" path="res://src/GUI/Menus/menu_panel.tscn" id="7_fw13r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5xtns"]
@@ -120,9 +119,6 @@ offset_bottom = 74.5
 grow_horizontal = 2
 grow_vertical = 2
 clip_tabs = false
-
-[node name="Campfire" parent="." instance=ExtResource("7_57w8h")]
-position = Vector2(277, 375)
 
 [node name="TopDownCharacter" parent="." instance=ExtResource("7_33g52")]
 z_index = 1
