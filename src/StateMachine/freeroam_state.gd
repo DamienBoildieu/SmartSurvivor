@@ -23,3 +23,7 @@ func _process_physics_state(_delta: float) -> void:
 		character.velocity = character.velocity.normalized() * character.speed
 	else:
 		character.state = TopDownCharacter.AnimationState.IDLE
+
+func _state_inputs(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		character.interaction.interact()

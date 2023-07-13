@@ -9,7 +9,8 @@ var building_site: BuildingSite:
 		if building_site != null:
 			building_site.building_complete.disconnect(_on_building_complete)
 		building_site = new_site
-		building_site.building_complete.connect(_on_building_complete)
+		if building_site != null:
+			building_site.building_complete.connect(_on_building_complete)
 
 
 func _enter_state(arguments := {}) -> void:
@@ -28,6 +29,6 @@ func _on_building_complete(_building_site: BuildingSite) -> void:
 
 
 func stop_build() -> void:
-	building_site.building_complete.disconnect(_on_building_complete)
 	building_site.remove_workers(character.work_force)
+	building_site = null
 	character.stop_build()

@@ -38,6 +38,7 @@ var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.
 @onready var body_shape: CollisionShape2D = $BodyArea/CollisionShape2D
 @onready var place_area: PlaceArea = $PlaceArea
 @onready var attack_audio: AudioStreamPlayer2D = $AttackArea/AudioStreamPlayer2D
+@onready var interaction: Interaction = $Interaction
 
 
 func _ready() -> void:
@@ -136,6 +137,9 @@ func build(recipe: Recipe) -> void:
 	if inventory.has_all(recipe.requires):
 		inventory.remove_items(recipe.requires)
 		var instantiated_bs := building_site.instantiate() as BuildingSite
+		if building_site == null:
+			print_debug("Error while instantiating building site")
+			return
 		instantiated_bs.recipe = recipe
 		instantiated_bs.position = place_area.global_position
 		owner.add_building_site(instantiated_bs)
@@ -144,6 +148,10 @@ func build(recipe: Recipe) -> void:
 
 func stop_build() -> void:
 	state_machine.travel(state_machine.states[2])
+
+
+func resume_build(new_bs: BuildingSite) -> void:
+	state_machine.travel(state_machine.states[1], {"building_site": new_bs})
 
 
 func cancel_place() -> void:

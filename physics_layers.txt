@@ -1,0 +1,4 @@
+0: physic collisions
+1: place
+2: interaction
+3: hitbox and attack

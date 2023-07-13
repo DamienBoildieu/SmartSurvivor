@@ -84,3 +84,9 @@ func complete_build() -> void:
 	audio.stop()
 	is_finished = true
 	building_complete.emit(self)
+
+
+func interact_with(other: Node2D) -> void:
+	var charac := other as TopDownCharacter
+	if charac != null:
+		charac.resume_build(self)
