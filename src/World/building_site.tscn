@@ -1,10 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp0o31yhvxjnn"]
+[gd_scene load_steps=7 format=3 uid="uid://cp0o31yhvxjnn"]
 
 [ext_resource type="Script" path="res://src/World/building_site.gd" id="1_e7ijw"]
+[ext_resource type="Shader" path="res://src/Shaders/building_site.gdshader" id="2_e7q7u"]
 [ext_resource type="PackedScene" uid="uid://brdbo8vtrmx5b" path="res://src/GUI/animated_bar.tscn" id="2_h68n2"]
 [ext_resource type="AudioStream" uid="uid://bu3gbv7ov2qxs" path="res://assets/Darkworld Audio - Survival Effects [Free]/Tools/HammerNail1.wav" id="3_rbxv0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emhlc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6v6x"]
+shader = ExtResource("2_e7q7u")
+shader_parameter/threshold = 0.1
 
 [node name="BuildingSite" type="StaticBody2D"]
 script = ExtResource("1_e7ijw")
@@ -13,6 +18,7 @@ script = ExtResource("1_e7ijw")
 shape = SubResource("RectangleShape2D_emhlc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_n6v6x")
 
 [node name="DisplayContainer" type="Node2D" parent="."]
 
