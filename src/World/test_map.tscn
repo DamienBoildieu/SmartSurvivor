@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dc5g5hdfi73l1"]
+[gd_scene load_steps=11 format=3 uid="uid://dc5g5hdfi73l1"]
 
 [ext_resource type="Script" path="res://src/World/test_map.gd" id="1_3u2gp"]
 [ext_resource type="Texture2D" uid="uid://b4mneqkdjmk5l" path="res://assets/mystic_woods_free_2.1/sprites/tilesets/plains.png" id="1_21qkk"]
 [ext_resource type="PackedScene" uid="uid://0q5w8fdwktm6" path="res://src/World/tree.tscn" id="1_vwais"]
 [ext_resource type="PackedScene" uid="uid://dssromjsg4d3x" path="res://src/GUI/gui.tscn" id="3_oquv4"]
+[ext_resource type="PackedScene" uid="uid://dfmjan2k54voq" path="res://src/Items/pickable_item.tscn" id="7_4cerh"]
 [ext_resource type="PackedScene" uid="uid://cl1obce8d36g3" path="res://src/Characters/top_down_character.tscn" id="7_33g52"]
 [ext_resource type="PackedScene" uid="uid://bfnv28g1c176r" path="res://src/GUI/Menus/menu_panel.tscn" id="7_fw13r"]
+[ext_resource type="Resource" uid="uid://c8ofubu061j6" path="res://src/Items/bread.tres" id="8_62kep"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5xtns"]
 resource_name = "Plains"
@@ -125,5 +127,9 @@ z_index = 1
 
 [node name="Camera2D2" type="Camera2D" parent="TopDownCharacter"]
 zoom = Vector2(2, 2)
+
+[node name="PickableItem" parent="." instance=ExtResource("7_4cerh")]
+position = Vector2(208, 246)
+item = ExtResource("8_62kep")
 
 [connection signal="item_picked" from="TopDownCharacter" to="." method="_on_player_item_picked"]

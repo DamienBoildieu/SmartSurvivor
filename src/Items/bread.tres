@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FoodItem" load_steps=3 format=3 uid="uid://c8ofubu061j6"]
+
+[ext_resource type="Script" path="res://src/Items/food_item.gd" id="1_0a0k0"]
+[ext_resource type="Texture2D" uid="uid://defl4y6yctviw" path="res://src/Items/default_item_atlas.tres" id="2_g1kas"]
+
+[resource]
+script = ExtResource("1_0a0k0")
+food_value = 5
+name = "Bread"
+description = "This bread is good to eat"
+texture = ExtResource("2_g1kas")
+scale = Vector2(0.5, 0.5)
+stackable = true
+usable = true

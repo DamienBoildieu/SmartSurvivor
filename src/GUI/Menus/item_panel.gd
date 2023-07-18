@@ -3,6 +3,7 @@ extends VBoxContainer
 
 
 signal drop_item(item: Item, quantity: int)
+signal use_item(item: UsableItem)
 
 
 @export var item: Item:
@@ -62,3 +63,7 @@ func clear() -> void:
 
 func _on_drop_button_pressed():
 	drop_item.emit(item, quantity)
+
+
+func _on_use_button_pressed():
+	use_item.emit(item)

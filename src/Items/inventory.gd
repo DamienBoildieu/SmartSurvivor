@@ -3,29 +3,27 @@ extends Resource
 
 
 signal drop_item(item: Item, amount: int)
+signal use_item(item: UsableItem, amount: int)
 signal inventory_changed()
 
 
 var items: Dictionary = {}
 
 
-func add_item(item, amount: int):
+func add_item(item: Item, amount: int) -> void:
 	var current_amount = items.get(item, 0)
 	items[item] = current_amount + amount
 	inventory_changed.emit()
 
 
-func drop(item, amount):
-	var current_amount = items.get(item, 0)
-	if amount > current_amount:
-		print_debug("You don't have that much of %s", item.name)
-	if current_amount != 0:
-		if amount >= current_amount:
-			items.erase(item)
-		else:
-			items[item] -= amount
-		drop_item.emit(item, amount)
-		inventory_changed.emit()
+func drop(item: Item, amount: int) -> void:
+	drop_item.emit(item, amount)
+	remove_items({item: amount})
+
+
+func use(item: UsableItem, amount: int = 1) -> void:
+	use_item.emit(item, amount)
+	remove_items({item: amount})
 
 
 func get_amount(item) -> int:
@@ -41,7 +39,13 @@ func has_all(requirements: Dictionary) -> bool:
 
 func remove_items(to_remove: Dictionary) -> void:
 	for item in to_remove:
-		items[item] -= to_remove[item]
-		if items[item] < 0:
-			items[item] = 0
+		var amount: int = to_remove[item]
+		var current_amount: int = items.get(item, 0)
+		if amount > current_amount:
+			print_debug("You don't have that much of %s", item.name)
+		if current_amount != 0:
+			if amount >= current_amount:
+				items.erase(item)
+			else:
+				items[item] -= amount
 	inventory_changed.emit()

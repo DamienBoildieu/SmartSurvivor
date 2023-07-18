@@ -49,3 +49,7 @@ func _on_visibility_changed():
 
 func _on_item_panel_drop_item(item, quantity):
 	inventory.drop(item, quantity)
+
+
+func _on_item_panel_use_item(item):
+	inventory.use(item)

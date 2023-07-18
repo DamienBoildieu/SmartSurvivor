@@ -23,7 +23,7 @@ func interaction_idx_cycle() -> void:
 
 func interact() -> void:
 	if len(interactable_objects) > 0:
-		interactable_objects[interaction_idx].interact_with(owner)
+		interactable_objects[interaction_idx]._interact_with(owner)
 
 
 func _on_body_entered(body: Node2D) -> void:

@@ -35,8 +35,10 @@ func reduce_need(modifier: int) -> void:
 		lack_need.emit()
 
 
-func improve_need(modifier: int) -> void:
+func improve_need(modifier: int, exceed: bool = false) -> void:
 	need_value += modifier
+	if not exceed and need_value > max_need:
+		need_value = max_need
 	need_updated.emit(need_value)
 
 

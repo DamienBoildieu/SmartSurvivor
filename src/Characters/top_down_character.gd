@@ -43,6 +43,7 @@ var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.
 
 func _ready() -> void:
 	inventory.drop_item.connect(_on_inventory_drop_item)
+	inventory.use_item.connect(_on_inventory_use_item)
 	place_area.build.connect(build)
 	place_area.cancel.connect(cancel_place)
 	state_machine.init_state_machine({"character": self})
@@ -118,6 +119,11 @@ func _on_health_die():
 	state = AnimationState.DIE
 
 
+func _on_inventory_use_item(item: UsableItem, amount: int) -> void:
+	for ii in amount:
+		item._use_on(self)
+
+
 func _on_inventory_drop_item(item, amount):
 	var drop_position: Vector2 = body_shape.global_position
 	var drop_area := Vector2.ZERO
@@ -137,6 +143,7 @@ func build(recipe: Recipe) -> void:
 	if inventory.has_all(recipe.requires):
 		inventory.remove_items(recipe.requires)
 		var instantiated_bs := building_site.instantiate() as BuildingSite
+		print(instantiated_bs)
 		if building_site == null:
 			print_debug("Error while instantiating building site")
 			return
