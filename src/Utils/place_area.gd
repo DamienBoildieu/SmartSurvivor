@@ -65,4 +65,7 @@ func check_conflicts() -> void:
 	var nb_overlap := get_overlapping_areas().size()
 	nb_overlap += get_overlapping_bodies().size()
 	has_conflict = nb_overlap != 0
-	sprite.modulate = invalid_modulate if has_conflict else valid_modulate
+	var edges_color := Vector3(valid_modulate.r, valid_modulate.g, valid_modulate.b)
+	if has_conflict:
+		edges_color = Vector3(invalid_modulate.r, invalid_modulate.g, invalid_modulate.b)
+	sprite.material.set_shader_parameter("edges_color", edges_color)

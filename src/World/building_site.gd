@@ -5,7 +5,7 @@ extends StaticBody2D
 signal building_complete(site: BuildingSite)
 
 
-@export var building_modulate: Color = Color(1.0, 1.0, 1.0, 0.5)
+@export var interactable: Interactable
 
 
 var recipe: Recipe:
@@ -15,7 +15,6 @@ var recipe: Recipe:
 		recipe = new_recipe
 		if is_ready:
 			building_site_update()
-
 
 var cumulated_time: float = 0.
 var is_ready: bool = false
@@ -31,6 +30,7 @@ var is_finished: bool = false
 func _ready() -> void:
 	is_ready = true
 	building_site_update()
+	interactable._setup({"building_site": self})
 
 
 func _process(delta):
@@ -84,9 +84,3 @@ func complete_build() -> void:
 	audio.stop()
 	is_finished = true
 	building_complete.emit(self)
-
-
-func interact_with(other: Node2D) -> void:
-	var charac := other as TopDownCharacter
-	if charac != null:
-		charac.resume_build(self)

@@ -733,9 +733,6 @@ parameters/Die/blend_position = -0.312845
 parameters/Idle/blend_position = Vector2(0.428812, 0.0916667)
 parameters/Walk/blend_position = Vector2(0.00252736, 0.982533)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-
 [node name="Health" parent="." instance=ExtResource("4_k0gqj")]
 
 [node name="Water" parent="." instance=ExtResource("5_3pnnt")]

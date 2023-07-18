@@ -2,10 +2,7 @@ class_name Interaction
 extends Area2D
 
 
-signal current_interaction_changed(target: Node2D)
-
-
-var interactable_objects: Array[Node2D]
+var interactable_objects: Array[Interactable]
 var interaction_idx: int = -1
 
 
@@ -18,8 +15,10 @@ func _on_area_exited(area: Area2D) -> void:
 
 
 func interaction_idx_cycle() -> void:
-	interaction_idx += 1 % interactable_objects.size()
-	current_interaction_changed.emit(interactable_objects[interaction_idx])
+	if interactable_objects.size() > 0:
+		interactable_objects[interaction_idx]._unselect()
+		interaction_idx = (interaction_idx + 1) % interactable_objects.size()
+		interactable_objects[interaction_idx]._select()
 
 
 func interact() -> void:
@@ -36,18 +35,22 @@ func _on_body_exited(body: Node2D) -> void:
 
 
 func check_and_add(other: Node2D) -> void:
-	if other.has_method("interact_with"):
+	if "interactable" in other:
 		print(other)
-		interactable_objects.append(other)
+		interactable_objects.append(other.interactable)
 		if interaction_idx == -1:
 			interaction_idx = 0
+			interactable_objects[interaction_idx]._select()
 
 
 func check_and_remove(other: Node2D) -> void:
-	var idx := interactable_objects.find(other)
-	if idx != -1:
-		interactable_objects.remove_at(idx)
-	if interactable_objects.size() == 0:
-		interaction_idx = -1
-	elif interaction_idx >= idx:
-		interaction_idx -= 1
+	if "interactable" in other:
+		var idx := interactable_objects.find(other.interactable)
+		if idx != -1:
+			if interaction_idx == idx:
+				interactable_objects[interaction_idx]._unselect()
+			interactable_objects.remove_at(idx)
+		if interactable_objects.size() == 0:
+			interaction_idx = -1
+		elif interaction_idx >= idx:
+			interaction_idx -= 1

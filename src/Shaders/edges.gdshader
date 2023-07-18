@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform float threshold;
-
+uniform vec3 edges_color;
 
 vec2 compute_gradients(vec4 center, vec4 left, vec4 right, vec4 top, vec4 bottom, vec2 steps) {
 	vec4 grad_x = ((center - left)/steps.x + (center - right)/steps.x)/2.;
@@ -36,7 +36,7 @@ void fragment() {
 	
 	vec2 grad_length = compute_gradients(pix_color, col_l, col_r, col_t, col_b, steps);
 	if (length(grad_length)> threshold)
-		COLOR = vec4(1., 1., 1., 1.);
+		COLOR = vec4(edges_color, pix_color.a);
 	else
-		COLOR = vec4(0., 0., 0., 0.0);
+		COLOR = vec4(0.);
 }

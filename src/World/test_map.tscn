@@ -123,4 +123,7 @@ clip_tabs = false
 [node name="TopDownCharacter" parent="." instance=ExtResource("7_33g52")]
 z_index = 1
 
+[node name="Camera2D2" type="Camera2D" parent="TopDownCharacter"]
+zoom = Vector2(2, 2)
+
 [connection signal="item_picked" from="TopDownCharacter" to="." method="_on_player_item_picked"]

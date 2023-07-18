@@ -27,3 +27,5 @@ func _process_physics_state(_delta: float) -> void:
 func _state_inputs(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		character.interaction.interact()
+	if event.is_action_pressed("interaction_cycle"):
+		character.interaction.interaction_idx_cycle()

@@ -23,10 +23,10 @@ signal item_picked(item: Item)
 @export var state_machine: StateMachine
 
 
+const building_site: PackedScene = preload("res://src/World/building_site.tscn")
 var speed: float = max_speed
 var direction: Vector2 = Vector2(0., -1.)
 var state: AnimationState = AnimationState.IDLE
-const building_site: PackedScene = preload("res://src/World/building_site.tscn")
 @onready
 var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.get("parameters/playback")
 @onready var health: Health = $Health
