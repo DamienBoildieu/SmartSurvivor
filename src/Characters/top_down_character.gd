@@ -42,8 +42,6 @@ var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.
 
 
 func _ready() -> void:
-	inventory.drop_item.connect(_on_inventory_drop_item)
-	inventory.use_item.connect(_on_inventory_use_item)
 	place_area.build.connect(build)
 	place_area.cancel.connect(cancel_place)
 	state_machine.init_state_machine({"character": self})
@@ -119,12 +117,26 @@ func _on_health_die():
 	state = AnimationState.DIE
 
 
-func _on_inventory_use_item(item: UsableItem, amount: int) -> void:
+func _on_use_item(item: UsableItem, amount: int = 1) -> void:
+	use_item(item, amount)
+	inventory.remove_items({item: amount})
+
+
+func _on_drop_item(item: Item, amount: int) -> void:
+	drop_item(item, amount)
+	inventory.remove_items({item: amount})
+
+
+func _on_build_place(recipe: Recipe) -> void:
+	state_machine.travel(state_machine.states[0], {"recipe": recipe})
+
+
+func use_item(item: UsableItem, amount: int) -> void:
 	for ii in amount:
 		item._use_on(self)
 
 
-func _on_inventory_drop_item(item, amount):
+func drop_item(item: Item, amount: int) -> void:
 	var drop_position: Vector2 = body_shape.global_position
 	var drop_area := Vector2.ZERO
 	if velocity != Vector2.ZERO:
@@ -133,10 +145,6 @@ func _on_inventory_drop_item(item, amount):
 	else:
 		drop_area = body_shape.shape.size * 2
 	GlobalDropItem.drop_item(item, amount, drop_position, drop_area)
-
-
-func _on_build_place(recipe: Recipe) -> void:
-	state_machine.travel(state_machine.states[0], {"recipe": recipe})
 
 
 func build(recipe: Recipe) -> void:

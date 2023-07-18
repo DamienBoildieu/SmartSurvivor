@@ -7,5 +7,5 @@ extends Resource
 @export var texture: Texture = preload("res://src/Items/default_item_atlas.tres")
 # Default scale for sprites to 0.5 as items assets are 32 pixels size while  are 16 pixels size
 @export var scale: Vector2 = Vector2(0.5, 0.5)
+#Not implemented, everything is stackable with infinite size
 @export var stackable: bool = true
-@export var usable: bool = false

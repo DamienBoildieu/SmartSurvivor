@@ -2,8 +2,6 @@ class_name Inventory
 extends Resource
 
 
-signal drop_item(item: Item, amount: int)
-signal use_item(item: UsableItem, amount: int)
 signal inventory_changed()
 
 
@@ -14,16 +12,6 @@ func add_item(item: Item, amount: int) -> void:
 	var current_amount = items.get(item, 0)
 	items[item] = current_amount + amount
 	inventory_changed.emit()
-
-
-func drop(item: Item, amount: int) -> void:
-	drop_item.emit(item, amount)
-	remove_items({item: amount})
-
-
-func use(item: UsableItem, amount: int = 1) -> void:
-	use_item.emit(item, amount)
-	remove_items({item: amount})
 
 
 func get_amount(item) -> int:

@@ -47,7 +47,7 @@ func update_item() -> void:
 		name_label.add_image(item.texture)
 		name_label.add_text(item.name)
 		description_label.text = item.description
-		use_button.disabled = not item.usable
+		use_button.disabled = not item is UsableItem
 
 
 func update_quantity() -> void:

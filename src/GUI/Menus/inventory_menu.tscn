@@ -19,5 +19,3 @@ columns = 4
 layout_mode = 2
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="drop_item" from="ItemPanel" to="." method="_on_item_panel_drop_item"]
-[connection signal="use_item" from="ItemPanel" to="." method="_on_item_panel_use_item"]

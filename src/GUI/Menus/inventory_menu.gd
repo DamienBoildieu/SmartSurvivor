@@ -9,13 +9,14 @@ extends HSplitContainer
 var inventory_item_template: PackedScene = preload("res://src/GUI/Menus/inventory_item.tscn")
 var inventory: Inventory
 
-
-func setup_inventory(new_inventory: Inventory) -> void:
-	if new_inventory != inventory:
+func setup_inventory(player: TopDownCharacter) -> void:
+	if player.inventory != inventory:
 		if inventory != null:
 			inventory.inventory_changed.disconnect(_on_inventory_changed)
-		inventory = new_inventory
+		inventory = player.inventory
 		inventory.inventory_changed.connect(_on_inventory_changed)
+		item_panel.use_item.connect(player._on_use_item)
+		item_panel.drop_item.connect(player._on_drop_item)
 	refresh_inventory()
 
 
@@ -45,11 +46,3 @@ func _on_item_clicked(inventory_item: InventoryItem) -> void:
 func _on_visibility_changed():
 	if item_panel != null:
 		item_panel.hide()
-
-
-func _on_item_panel_drop_item(item, quantity):
-	inventory.drop(item, quantity)
-
-
-func _on_item_panel_use_item(item):
-	inventory.use(item)
