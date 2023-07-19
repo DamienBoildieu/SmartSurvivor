@@ -10,4 +10,3 @@ description = "Wood can be used in various recipes"
 texture = ExtResource("2_ihc7h")
 scale = Vector2(0.5, 0.5)
 stackable = true
-usable = false

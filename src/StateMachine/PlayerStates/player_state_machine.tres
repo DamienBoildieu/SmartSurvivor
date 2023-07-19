@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="StateMachine" load_steps=8 format=3 uid="uid://c0qvt3cawh17f"]
+
+[ext_resource type="Script" path="res://src/StateMachine/PlayerStates/freeroam_state.gd" id="1_s887h"]
+[ext_resource type="Script" path="res://src/StateMachine/state_machine.gd" id="2_acbdf"]
+[ext_resource type="Script" path="res://src/StateMachine/PlayerStates/build_state.gd" id="3_fqa50"]
+[ext_resource type="Script" path="res://src/StateMachine/PlayerStates/place_state.gd" id="4_xg5vg"]
+
+[sub_resource type="Resource" id="Resource_yf256"]
+script = ExtResource("1_s887h")
+state_type = 0
+
+[sub_resource type="Resource" id="Resource_rvgru"]
+script = ExtResource("3_fqa50")
+state_type = 2
+
+[sub_resource type="Resource" id="Resource_ijk08"]
+script = ExtResource("4_xg5vg")
+state_type = 1
+
+[resource]
+script = ExtResource("2_acbdf")
+initial_state = SubResource("Resource_yf256")
+states = Array[Resource("res://src/StateMachine/state.gd")]([SubResource("Resource_rvgru"), SubResource("Resource_ijk08")])

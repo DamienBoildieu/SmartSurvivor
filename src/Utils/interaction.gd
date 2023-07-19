@@ -52,5 +52,7 @@ func check_and_remove(other: Node2D) -> void:
 			interactable_objects.remove_at(idx)
 		if interactable_objects.size() == 0:
 			interaction_idx = -1
-		elif interaction_idx >= idx:
-			interaction_idx -= 1
+		else:
+			if interaction_idx >= idx:
+				interaction_idx -= 1
+			interactable_objects[interaction_idx]._select()

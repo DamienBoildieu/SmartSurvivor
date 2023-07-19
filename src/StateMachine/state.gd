@@ -2,6 +2,9 @@ class_name State
 extends Resource
 
 
+var state_id: int
+
+
 func _init_state(_arguments := {}) -> void:
 	pass
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dc5g5hdfi73l1"]
+[gd_scene load_steps=15 format=3 uid="uid://dc5g5hdfi73l1"]
 
 [ext_resource type="Script" path="res://src/World/test_map.gd" id="1_3u2gp"]
 [ext_resource type="Texture2D" uid="uid://b4mneqkdjmk5l" path="res://assets/mystic_woods_free_2.1/sprites/tilesets/plains.png" id="1_21qkk"]
@@ -6,8 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://dssromjsg4d3x" path="res://src/GUI/gui.tscn" id="3_oquv4"]
 [ext_resource type="PackedScene" uid="uid://dfmjan2k54voq" path="res://src/Items/pickable_item.tscn" id="7_4cerh"]
 [ext_resource type="PackedScene" uid="uid://cl1obce8d36g3" path="res://src/Characters/top_down_character.tscn" id="7_33g52"]
+[ext_resource type="Script" path="res://src/Items/inventory.gd" id="7_271hk"]
 [ext_resource type="PackedScene" uid="uid://bfnv28g1c176r" path="res://src/GUI/Menus/menu_panel.tscn" id="7_fw13r"]
+[ext_resource type="Resource" uid="uid://chx8s7if7ls4t" path="res://src/Recipes/player_recipes.tres" id="8_2jwgd"]
 [ext_resource type="Resource" uid="uid://c8ofubu061j6" path="res://src/Items/bread.tres" id="8_62kep"]
+[ext_resource type="Resource" uid="uid://c0qvt3cawh17f" path="res://src/StateMachine/PlayerStates/player_state_machine.tres" id="9_sewax"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5xtns"]
 resource_name = "Plains"
@@ -84,6 +87,9 @@ texture = ExtResource("1_21qkk")
 [sub_resource type="TileSet" id="TileSet_gjf4q"]
 sources/0 = SubResource("TileSetAtlasSource_5xtns")
 
+[sub_resource type="Resource" id="Resource_bq60h"]
+script = ExtResource("7_271hk")
+
 [node name="TestMap" type="TileMap"]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_gjf4q")
@@ -124,8 +130,11 @@ clip_tabs = false
 
 [node name="TopDownCharacter" parent="." instance=ExtResource("7_33g52")]
 z_index = 1
+inventory = SubResource("Resource_bq60h")
+recipes = ExtResource("8_2jwgd")
+state_machine = ExtResource("9_sewax")
 
-[node name="Camera2D2" type="Camera2D" parent="TopDownCharacter"]
+[node name="Camera2D" type="Camera2D" parent="TopDownCharacter"]
 zoom = Vector2(2, 2)
 
 [node name="PickableItem" parent="." instance=ExtResource("7_4cerh")]

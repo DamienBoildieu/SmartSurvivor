@@ -128,7 +128,7 @@ func _on_drop_item(item: Item, amount: int) -> void:
 
 
 func _on_build_place(recipe: Recipe) -> void:
-	state_machine.travel(state_machine.states[0], {"recipe": recipe})
+	state_machine.travel(CharacterState.StateType.PLACE, {"recipe": recipe})
 
 
 func use_item(item: UsableItem, amount: int) -> void:
@@ -158,19 +158,19 @@ func build(recipe: Recipe) -> void:
 		instantiated_bs.recipe = recipe
 		instantiated_bs.position = place_area.global_position
 		owner.add_building_site(instantiated_bs)
-		state_machine.travel(state_machine.states[1], {"building_site": instantiated_bs})
+		state_machine.travel(CharacterState.StateType.BUILD, {"building_site": instantiated_bs})
 
 
 func stop_build() -> void:
-	state_machine.travel(state_machine.states[2])
+	state_machine.travel(CharacterState.StateType.FREEROAM)
 
 
 func resume_build(new_bs: BuildingSite) -> void:
-	state_machine.travel(state_machine.states[1], {"building_site": new_bs})
+	state_machine.travel(CharacterState.StateType.BUILD, {"building_site": new_bs})
 
 
 func cancel_place() -> void:
-	state_machine.travel(state_machine.states[2])
+	state_machine.travel(CharacterState.StateType.FREEROAM)
 
 
 func _on_body_area_area_entered(area):

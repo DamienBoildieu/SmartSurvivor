@@ -1,6 +1,18 @@
 class_name CharacterState
 extends State
 
+
+enum StateType {FREEROAM, PLACE, BUILD}
+
+
+@export var state_type: StateType:
+	get:
+		return state_type
+	set(new_value):
+		state_type = new_value
+		state_id = state_type
+
+
 var character: TopDownCharacter
 
 
