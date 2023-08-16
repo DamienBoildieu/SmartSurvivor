@@ -42,9 +42,11 @@ func _process(func_name: String, delta: float) -> StateEnum:
 	check_cooldown(process_info, delta)
 	print_debug(process_info)
 	if process_info.available:
-		start_cooldown(process_info)
-		print_debug(process_info)
-		print_debug(cooldown_info)
-		return child.call(func_name, delta) as StateEnum
+		var ret_code := child.call(func_name, delta) as StateEnum
+		if ret_code == StateEnum.SUCCESS or ret_code == StateEnum.FAIL:
+			start_cooldown(process_info)
+			print_debug(process_info)
+			print_debug(cooldown_info)
+		return ret_code
 	else:
 		return StateEnum.FAIL
