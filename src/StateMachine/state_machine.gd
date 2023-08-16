@@ -1,5 +1,5 @@
 class_name StateMachine
-extends Resource
+extends State
 
 @export var initial_state: State
 @export var states: Array[State]
@@ -7,7 +7,7 @@ var states_dict: Dictionary
 var current_state: State
 
 
-func init_state_machine(arguments := {}) -> void:
+func init_state(arguments := {}) -> void:
 	states.push_back(initial_state)
 	for state in states:
 		state._init_state(arguments)
@@ -15,15 +15,15 @@ func init_state_machine(arguments := {}) -> void:
 	current_state = initial_state
 
 
-func _process_state_machine(delta: float) -> void:
+func _process_state(delta: float) -> void:
 	current_state._process_state(delta)
 
 
-func _process_physics_state_machine(delta: float) -> void:
+func _process_physics_state(delta: float) -> void:
 	current_state._process_physics_state(delta)
 
 
-func _state_machine_inputs(event: InputEvent) -> void:
+func _state_inputs(event: InputEvent) -> void:
 	current_state._state_inputs(event)
 
 

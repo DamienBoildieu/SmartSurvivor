@@ -1,5 +1,4 @@
-class_name TopDownCharacter
-extends CharacterBody2D
+class_name TopDownCharacter extends SMCharacter
 
 
 enum AnimationState {IDLE, WALK, ATTACK, DIE}
@@ -20,10 +19,8 @@ signal item_picked(item: Item)
 @export var work_force: int = 1
 @export var inventory: Inventory
 @export var recipes: RecipeBook
-@export var state_machine: StateMachine
 
 
-const building_site: PackedScene = preload("res://src/World/building_site.tscn")
 var speed: float = max_speed
 var direction: Vector2 = Vector2(0., -1.)
 var state: AnimationState = AnimationState.IDLE
@@ -41,26 +38,6 @@ var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.
 @onready var interaction: Interaction = $Interaction
 
 
-func _ready() -> void:
-	place_area.build.connect(build)
-	place_area.cancel.connect(cancel_place)
-	state_machine.init_state_machine({"character": self})
-
-
-func _process(delta):
-	state_machine._process_state_machine(delta)
-
-
-func _physics_process(delta) -> void:
-	state_machine._process_physics_state_machine(delta)
-	update_animation()
-	move_and_slide()
-
-
-func _input(event):
-	state_machine._state_machine_inputs(event)
-
-
 func set_blending_position(param: String, blending_pos: Vector2) -> void:
 	var blending_param: String = "parameters/" + param + "/blend_position"
 	animation_tree.set(blending_param, blending_pos)
@@ -76,15 +53,16 @@ func apply_blending(next_state: String, blending_pos: Vector2) -> void:
 		set_blending_position(next_state, blending_pos)
 
 
-func update_animation() -> void:
+func _update_animation() -> void:
+	var current_state: String = animation_state_machine.get_current_node()
 	var next_state: String = AnimationEnumMap[state]
 	if velocity != Vector2.ZERO:
 		direction = velocity.normalized()
 		# y axis in bleding space is opposed to y axis in game space
 		direction.y = - direction.y
 	apply_blending(next_state, direction)
-
-	animation_state_machine.travel(next_state)
+	if current_state != next_state:
+		animation_state_machine.travel(next_state)
 
 
 func perform_attack(target: Node) -> void:
@@ -147,12 +125,12 @@ func drop_item(item: Item, amount: int) -> void:
 	GlobalDropItem.drop_item(item, amount, drop_position, drop_area)
 
 
-func build(recipe: Recipe) -> void:
+func _on_place_area_build(recipe: Recipe) -> void:
 	if inventory.has_all(recipe.requires):
 		inventory.remove_items(recipe.requires)
-		var instantiated_bs := building_site.instantiate() as BuildingSite
+		var instantiated_bs := PrefabConst.building_site.instantiate() as BuildingSite
 		print(instantiated_bs)
-		if building_site == null:
+		if instantiated_bs == null:
 			print_debug("Error while instantiating building site")
 			return
 		instantiated_bs.recipe = recipe
@@ -169,11 +147,11 @@ func resume_build(new_bs: BuildingSite) -> void:
 	state_machine.travel(CharacterState.StateType.BUILD, {"building_site": new_bs})
 
 
-func cancel_place() -> void:
-	state_machine.travel(CharacterState.StateType.FREEROAM)
-
-
 func _on_body_area_area_entered(area):
 	if area is PickableItem:
 		inventory.add_item(area.item, area.quantity)
 		item_picked.emit(area)
+
+
+func _on_place_area_cancel():
+	state_machine.travel(CharacterState.StateType.FREEROAM)

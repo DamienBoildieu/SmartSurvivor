@@ -743,5 +743,7 @@ shape = SubResource("CircleShape2D_fertb")
 [connection signal="lack_need" from="Energy" to="." method="_on_energy_lack_need"]
 [connection signal="lack_need" from="Food" to="." method="_on_food_lack_need"]
 [connection signal="area_entered" from="BodyArea" to="." method="_on_body_area_area_entered"]
+[connection signal="build" from="PlaceArea" to="." method="_on_place_area_build"]
+[connection signal="cancel" from="PlaceArea" to="." method="_on_place_area_cancel"]
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

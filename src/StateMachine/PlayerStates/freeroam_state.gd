@@ -3,7 +3,7 @@ extends CharacterState
 
 
 func _process_physics_state(_delta: float) -> void:
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_pressed("attack"):
 		character.state = TopDownCharacter.AnimationState.ATTACK
 		return
 	var direction_input: float = Input.get_axis("move_left", "move_right")

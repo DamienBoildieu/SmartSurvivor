@@ -111,6 +111,7 @@ position = Vector2(275, 296)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("3_oquv4")]
+offset_right = 5230.0
 offset_bottom = 1004.0
 scale = Vector2(0.217201, 0.0959813)
 
@@ -130,6 +131,7 @@ clip_tabs = false
 
 [node name="TopDownCharacter" parent="." instance=ExtResource("7_33g52")]
 z_index = 1
+position = Vector2(-1, 0)
 inventory = SubResource("Resource_bq60h")
 recipes = ExtResource("8_2jwgd")
 state_machine = ExtResource("9_sewax")
