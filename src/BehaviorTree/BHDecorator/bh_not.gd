@@ -10,9 +10,5 @@ func negate(ret_code: StateEnum) -> StateEnum:
 		return ret_code
 
 
-func _process_node(delta: float) -> StateEnum:
-	return negate(child._process_node(delta))
-
-
-func _process_physics_node(delta: float) -> StateEnum:
-	return negate(child._process_node(delta))
+func _process(func_name, delta: float) -> StateEnum:
+	return negate(child.call(func_name, delta) as StateEnum)

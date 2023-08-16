@@ -10,28 +10,11 @@ func _setup(args: Dictionary) -> void:
 		child._setup(args)
 
 
-func _process_node(delta: float) -> StateEnum:
+func _process(func_name: String, delta: float) -> StateEnum:
 	var success_count := 0
 	var has_running := false
 	for child in children:
-		var ret_code := child._process_node(delta)
-		if ret_code != StateEnum.SUCCESS:
-			success_count += 1
-		if not has_running and ret_code == StateEnum.RUNNING:
-			has_running = true
-	if success_count > threshold:
-		return StateEnum.SUCCESS
-	elif has_running:
-		return StateEnum.RUNNING
-	else:
-		return StateEnum.FAIL
-
-
-func _process_physics_node(delta: float) -> StateEnum:
-	var success_count := 0
-	var has_running := false
-	for child in children:
-		var ret_code := child._process_physics_node(delta)
+		var ret_code := child.call(func_name, delta) as StateEnum
 		if ret_code != StateEnum.SUCCESS:
 			success_count += 1
 		if not has_running and ret_code == StateEnum.RUNNING:

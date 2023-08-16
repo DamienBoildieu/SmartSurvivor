@@ -10,17 +10,9 @@ func _setup(args: Dictionary) -> void:
 		child._setup(args)
 
 
-func _process_node(delta: float) -> StateEnum:
+func _process(func_name: String, delta: float) -> StateEnum:
 	for child in children:
-		var ret_code := child._process_node(delta)
-		if ret_code != sequence_type:
-			return ret_code
-	return sequence_type
-
-
-func _process_physics_node(delta: float) -> StateEnum:
-	for child in children:
-		var ret_code := child._process_physics_node(delta)
+		var ret_code := child.call(func_name, delta) as StateEnum
 		if ret_code != sequence_type:
 			return ret_code
 	return sequence_type
