@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://dyovflf26u8f"]
 
-[ext_resource type="Script" path="res://src/Needs/health.gd" id="1_kadu7"]
-[ext_resource type="Script" path="res://src/Characters/creature.gd" id="1_ngok8"]
+[ext_resource type="Script" path="res://src/Characters/Creatures/creature.gd" id="1_2ty5y"]
+[ext_resource type="PackedScene" uid="uid://b2j8pa2vqj4vh" path="res://src/Needs/health.tscn" id="2_83qs5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbv5w"]
+size = Vector2(15, 12)
 
 [node name="Creature" type="CharacterBody2D"]
-script = ExtResource("1_ngok8")
+script = ExtResource("1_2ty5y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tbv5w")
@@ -15,5 +16,6 @@ shape = SubResource("RectangleShape2D_tbv5w")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("1_kadu7")
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Health" parent="." instance=ExtResource("2_83qs5")]

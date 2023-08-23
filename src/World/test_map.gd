@@ -1,5 +1,4 @@
-class_name TestMap
-extends TileMap
+class_name TestMap extends Node2D
 
 
 @onready var canvas: CanvasLayer = $CanvasLayer
@@ -7,6 +6,7 @@ extends TileMap
 @onready var player: TopDownCharacter = $TopDownCharacter
 @onready var pick_item_anim: PackedScene = preload("res://src/GUI/pick_item_anim.tscn")
 @onready var menus: MenuPanel= $CanvasLayer/MenuPanel
+@onready var nav_region: NavigationRegion2D = $NavigationRegion2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +17,8 @@ func _ready():
 	# 	generator.get_node("DropItem").spawn.connect(_on_spawn)
 	menus.visible = false
 	menus.setup_menus(player)
+	var slime = $Slime as Creature
+	slime.navigation_agent.target_position = $TargetNode.global_position
 
 
 func _on_spawn(item: PickableItem) -> void:
@@ -60,4 +62,4 @@ func _on_building_complete(building_site: BuildingSite) -> void:
 	instantiated_building.position = building_site.global_position
 	remove_child(building_site)
 	building_site.queue_free()
-	add_child(instantiated_building)
+	nav_region.add_child(instantiated_building)

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://3v68ylh6t7to"]
+
+[ext_resource type="PackedScene" uid="uid://dyovflf26u8f" path="res://src/Characters/Creatures/creature.tscn" id="1_2l76y"]
+[ext_resource type="Texture2D" uid="uid://dodca1mbrfqnl" path="res://assets/mystic_woods_free_2.1/sprites/characters/slime.png" id="2_gne1j"]
+
+[node name="Slime" instance=ExtResource("1_2l76y")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-2.5, 4)
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_gne1j")
+hframes = 6
+vframes = 6

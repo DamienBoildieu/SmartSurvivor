@@ -20,7 +20,6 @@ signal item_picked(item: Item)
 @export var inventory: Inventory
 @export var recipes: RecipeBook
 
-
 var speed: float = max_speed
 var direction: Vector2 = Vector2(0., -1.)
 var state: AnimationState = AnimationState.IDLE

@@ -1,5 +1,6 @@
 class_name BHCooldown extends BHDecorator
 
+
 class CooldownData:
 	var available := false
 	var time_spent := 0.0
@@ -25,10 +26,6 @@ func check_cooldown(process_info: CooldownData, delta: float) -> void:
 	process_info.time_spent += delta
 	if process_info.time_spent >= cooldown:
 		process_info.available = true
-
-
-func _setup(args: Dictionary) -> void:
-	super(args)
 
 
 func _process(func_name: String, delta: float) -> StateEnum:

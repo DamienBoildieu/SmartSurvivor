@@ -5,7 +5,7 @@ class_name BHCharacter extends CharacterBody2D
 
 
 func _ready() -> void:
-	behavior._setup({"target": self})
+	behavior._setup({"pawn": self})
 
 
 func _process(delta: float) -> void:
