@@ -11,3 +11,7 @@ func _setup(args: Dictionary) -> void:
 func _abort() -> void:
 	child._abort()
 	to_abort = true
+
+
+func _process(func_name: String, delta: float) -> StateEnum:
+	return child.call(func_name, delta) as StateEnum

@@ -1,9 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://3v68ylh6t7to"]
+[gd_scene load_steps=7 format=3 uid="uid://3v68ylh6t7to"]
 
 [ext_resource type="PackedScene" uid="uid://dyovflf26u8f" path="res://src/Characters/Creatures/creature.tscn" id="1_2l76y"]
+[ext_resource type="Script" path="res://src/BehaviorTree/CreatureBehaviors/bh_move.gd" id="2_8vm6h"]
 [ext_resource type="Texture2D" uid="uid://dodca1mbrfqnl" path="res://assets/mystic_woods_free_2.1/sprites/characters/slime.png" id="2_gne1j"]
+[ext_resource type="Script" path="res://src/BehaviorTree/BHDecorator/bh_cooldown.gd" id="3_v1qyc"]
+
+[sub_resource type="Resource" id="Resource_m8oif"]
+script = ExtResource("2_8vm6h")
+
+[sub_resource type="Resource" id="Resource_jw1yu"]
+script = ExtResource("3_v1qyc")
+cooldown = 1.0
+cooldown_on_end = true
+child = SubResource("Resource_m8oif")
 
 [node name="Slime" instance=ExtResource("1_2l76y")]
+behavior = SubResource("Resource_jw1yu")
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(-2.5, 4)

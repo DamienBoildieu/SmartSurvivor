@@ -24,7 +24,8 @@ func _process(func_name: String, delta: float) -> StateEnum:
 	var ret_code := sequence_type
 	while ret_code == sequence_type and current_child < children.size():
 		ret_code = children[current_child].call(func_name, delta) as StateEnum
-		current_child += 1
+		if ret_code == sequence_type:
+			current_child += 1
 	if current_child == children.size() or ret_code != StateEnum.RUNNING:
 		current_child = 0
 	last_result = ret_code

@@ -17,8 +17,6 @@ func _ready():
 	# 	generator.get_node("DropItem").spawn.connect(_on_spawn)
 	menus.visible = false
 	menus.setup_menus(player)
-	var slime = $Slime as Creature
-	slime.navigation_agent.target_position = $TargetNode.global_position
 
 
 func _on_spawn(item: PickableItem) -> void:

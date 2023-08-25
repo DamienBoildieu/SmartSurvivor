@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dc5g5hdfi73l1"]
+[gd_scene load_steps=25 format=3 uid="uid://dc5g5hdfi73l1"]
 
 [ext_resource type="Script" path="res://src/World/test_map.gd" id="1_3u2gp"]
 [ext_resource type="Texture2D" uid="uid://b4mneqkdjmk5l" path="res://assets/mystic_woods_free_2.1/sprites/tilesets/plains.png" id="1_21qkk"]
@@ -13,6 +13,9 @@
 [ext_resource type="Resource" uid="uid://c0qvt3cawh17f" path="res://src/StateMachine/PlayerStates/player_state_machine.tres" id="9_sewax"]
 [ext_resource type="PackedScene" uid="uid://3v68ylh6t7to" path="res://src/Characters/Creatures/slime.tscn" id="12_7xpci"]
 [ext_resource type="Script" path="res://src/BehaviorTree/CreatureBehaviors/bh_move.gd" id="13_1jh1v"]
+[ext_resource type="Script" path="res://src/BehaviorTree/CreatureBehaviors/bh_random_pos.gd" id="13_i8d2b"]
+[ext_resource type="Script" path="res://src/BehaviorTree/BHDecorator/bh_cooldown.gd" id="14_756mk"]
+[ext_resource type="Script" path="res://src/BehaviorTree/bh_sequence.gd" id="15_mvb8y"]
 
 [sub_resource type="Resource" id="Resource_bq60h"]
 script = ExtResource("7_271hk")
@@ -97,10 +100,23 @@ texture = ExtResource("1_21qkk")
 [sub_resource type="TileSet" id="TileSet_gjf4q"]
 sources/0 = SubResource("TileSetAtlasSource_5xtns")
 
-[sub_resource type="Resource" id="Resource_wbnfa"]
-script = ExtResource("13_1jh1v")
-nav_region = Object(NavigationRegion2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"navigation_polygon":SubResource("NavigationPolygon_i736f"),"enabled":true,"use_edge_connections":true,"navigation_layers":1,"enter_cost":0.0,"travel_cost":1.0,"constrain_avoidance":false,"avoidance_layers":1,"script":null)
+[sub_resource type="Resource" id="Resource_7eutg"]
+script = ExtResource("13_i8d2b")
+boundaries = Rect2(-500, -500, 1000, 1000)
 
+[sub_resource type="Resource" id="Resource_6dew6"]
+script = ExtResource("13_1jh1v")
+
+[sub_resource type="Resource" id="Resource_45ap6"]
+script = ExtResource("15_mvb8y")
+sequence_type = 0
+children = Array[Resource("res://src/BehaviorTree/bh_node.gd")]([SubResource("Resource_7eutg"), SubResource("Resource_6dew6")])
+
+[sub_resource type="Resource" id="Resource_4c6rg"]
+script = ExtResource("14_756mk")
+cooldown = 5.0
+cooldown_on_end = true
+child = SubResource("Resource_45ap6")
 
 [node name="TestMap" type="Node2D"]
 y_sort_enabled = true
@@ -160,11 +176,8 @@ tile_set = SubResource("TileSet_gjf4q")
 format = 2
 layer_0/tile_data = PackedInt32Array(1179661, 131072, 5, 1245198, 131072, 5, 1310735, 131072, 5, 1310736, 131072, 5, 1245200, 131072, 5, 1179664, 131072, 5, 1114128, 131072, 5, 1048593, 131072, 5, 983057, 131072, 5, 917521, 131072, 5, 851984, 131072, 5, 786448, 131072, 5, 720912, 131072, 5, 720911, 131072, 5, 720910, 131072, 5, 786446, 131072, 5, 851981, 131072, 5, 917517, 131072, 5, 983053, 131072, 5, 1048589, 131072, 5, 1114124, 131072, 5, 1179660, 131072, 5, 1179662, 131072, 5, 1245199, 131072, 5, 1376271, 131072, 5, 1441806, 131072, 5, 1507342, 131072, 5, 1376270, 131072, 5, 1310734, 131072, 5, 1114126, 131072, 5, 1048590, 131072, 5, 983054, 131072, 5, 917518, 131072, 5, 851982, 131072, 5, 1114125, 131072, 5, 1310733, 131072, 5, 1376269, 131072, 5, 1441805, 131072, 5, 1507340, 131072, 5, 1441804, 131072, 5, 1376268, 131072, 5, 1310732, 131072, 5, 1245196, 131072, 5, 1048588, 131072, 5, 983052, 131072, 5, 917516, 131072, 5, 851980, 131072, 5, 786444, 131072, 5, 720908, 131072, 5, 655371, 131072, 5, 589835, 131072, 5, 524299, 131072, 5, 655372, 131072, 5, 1245197, 131072, 5, 1507341, 131072, 5, 1572877, 131072, 5, 1638413, 131072, 5, 1703949, 131072, 5, 1769485, 131072, 5, 1835021, 131072, 5, 1900556, 131072, 5, 1966092, 131072, 5, 1835020, 131072, 5, 1769484, 131072, 5, 1703948, 131072, 5, 1638412, 131072, 5, 1572876, 131072, 5, 1179663, 131072, 5, 1114127, 131072, 5, 1048592, 131072, 5, 983056, 131072, 5, 917520, 131072, 5, 655376, 131072, 5, 589840, 131072, 5, 524304, 131072, 5, 458768, 131072, 5, 393233, 131072, 5, 327697, 131072, 5, 458769, 131072, 5, 524305, 131072, 5, 589841, 131072, 5, 655377, 131072, 5, 720913, 131072, 5, 786449, 131072, 5, 851985, 131072, 5, 1114129, 131072, 5, 524306, 131072, 5, 458770, 131072, 5, 393234, 131072, 5, 327698, 131072, 5, 262162, 131072, 5, 196626, 131072, 5, 131090, 131072, 5, 65554, 131072, 5, 851983, 131072, 5, 786447, 131072, 5, 655375, 131072, 5, 589839, 131072, 5, 524303, 131072, 5, 458767, 131072, 5, 1048591, 131072, 5, 983055, 131072, 5, 917519, 131072, 5, 786445, 131072, 5, 720909, 131072, 5, 655373, 131072, 5, 589837, 131072, 5, 524301, 131072, 5, 458765, 131072, 5, 458766, 131072, 5, 524302, 131072, 5, 589838, 131072, 5, 655374, 131072, 5, 1572878, 131072, 5, 1638414, 131072, 5, 393231, 131072, 5, 327696, 131072, 5, 262160, 131072, 5, 196624, 131072, 5, 131088, 131072, 5, 327695, 131072, 5, 393232, 131072, 5, 589842, 131072, 5, 655378, 131072, 5, 720914, 131072, 5, 786450, 131072, 5, 851986, 131072, 5, 917522, 131072, 5, 983058, 131072, 5, 1179665, 131072, 5, 1376272, 131072, 5, 1441807, 131072, 5, 1507343, 131072, 5, 1572879, 131072, 5, 1441808, 131072, 5, 1507344, 131072, 5, 1638415, 131072, 5, 1703951, 131072, 5, 786451, 131072, 5, 851987, 131072, 5, 917523, 131072, 5, 983059, 131072, 5, 1048595, 131072, 5, 1114131, 131072, 5, 1179667, 131072, 5, 1245203, 131072, 5, 1310738, 131072, 5, 1376274, 131072, 5, 1441810, 131072, 5, 1507346, 131072, 5, 1572882, 131072, 5, 1638418, 131072, 5, 1638417, 131072, 5, 1572881, 131072, 5, 1507345, 131072, 5, 1441809, 131072, 5, 1245202, 131072, 5, 1179666, 131072, 5, 1114130, 131072, 5, 786452, 131072, 5, 851988, 131072, 5, 917524, 131072, 5, 983060, 131072, 5, 1048596, 131072, 5, 1310739, 131072, 5, 1376273, 131072, 5, 1310737, 131072, 5, 1245201, 131072, 5, 524307, 131072, 5, 589843, 131072, 5, 655379, 131072, 5, 720915, 131072, 5, 458771, 131072, 5, 1048594, 131072, 5, 1966091, 131072, 5, 2031626, 131072, 5, 2097162, 131072, 5, 2162697, 131072, 5, 2228233, 131072, 5, 2293768, 131072, 5, 2359304, 131072, 5, 2424839, 131072, 5, 2490375, 131072, 5, 2555911, 131072, 5, 2621446, 131072, 5, 2686982, 131072, 5, 2686983, 131072, 5, 2621447, 131072, 5, 2555912, 131072, 5, 2490376, 131072, 5, 2424841, 131072, 5, 2359306, 131072, 5, 2293770, 131072, 5, 2293771, 131072, 5, 2228235, 131072, 5, 2162700, 131072, 5, 2097164, 131072, 5, 2097165, 131072, 5, 2031629, 131072, 5, 1966094, 131072, 5, 1900558, 131072, 5, 1835023, 131072, 5, 1769487, 131072, 5, 1769486, 131072, 5, 1703950, 131072, 5, 1638416, 131072, 5, 1703952, 131072, 5, 1769488, 131072, 5, 1900559, 131072, 5, 1966093, 131072, 5, 1900557, 131072, 5, 1572880, 131072, 5)
 
-[node name="TargetNode" type="Node2D" parent="."]
-position = Vector2(210, 215)
-
-[node name="Slime" parent="." instance=ExtResource("12_7xpci")]
+[node name="Slime" parent="." groups=["NavAgents"] instance=ExtResource("12_7xpci")]
 position = Vector2(92, 96)
-behavior = SubResource("Resource_wbnfa")
+behavior = SubResource("Resource_4c6rg")
 
 [connection signal="item_picked" from="TopDownCharacter" to="." method="_on_player_item_picked"]
